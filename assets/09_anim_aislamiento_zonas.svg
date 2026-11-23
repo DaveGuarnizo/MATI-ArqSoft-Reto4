@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" width="960" height="340" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <rect x="1" y="1" width="958" height="338" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#0F172A">Aislamiento Total entre Zonas: Central de Emergencias vs. LSA Plus</text>
+  <text x="480" y="54" text-anchor="middle" font-size="12" fill="#475569">Una sobrecarga o caída en LSA Plus jamás afecta la ruta crítica gracias a la barrera asíncrona</text>
+
+  <!-- ZONA CRITICA -->
+  <rect x="30" y="80" width="380" height="225" rx="12" fill="#F0FDF4" stroke="#16A34A" stroke-width="2"/>
+  <text x="220" y="106" text-anchor="middle" font-size="14" font-weight="800" fill="#166534">🛡️ ZONA CRÍTICA · Central (Estable 7x24)</text>
+
+  <rect x="54" y="128" width="142" height="58" rx="8" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5"/>
+  <text x="125" y="152" text-anchor="middle" font-size="12" font-weight="700" fill="#991B1B">Carril Pánicos</text>
+  <text x="125" y="170" text-anchor="middle" font-size="11" fill="#15803D">&lt; 2 s · 0 pérdidas</text>
+
+  <rect x="234" y="128" width="152" height="58" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5"/>
+  <text x="310" y="152" text-anchor="middle" font-size="12" font-weight="700" fill="#0369A1">Log de Eventos</text>
+  <text x="310" y="170" text-anchor="middle" font-size="11" fill="#475569">24 colas · RF=3</text>
+
+  <path d="M 196 157 L 234 157" stroke="#16A34A" stroke-width="2.5"/>
+  <circle r="4" fill="#16A34A"><animateMotion dur="0.9s" repeatCount="indefinite" path="M 196 157 L 234 157"/></circle>
+
+  <rect x="54" y="210" width="332" height="72" rx="8" fill="#DCFCE7" stroke="#16A34A" stroke-width="1.2"/>
+  <text x="220" y="236" text-anchor="middle" font-size="12.5" font-weight="700" fill="#166534">✓ Cero llamadas síncronas hacia LSA Plus</text>
+  <text x="220" y="258" text-anchor="middle" font-size="11" fill="#14532D">Sigue operando al 100 % incluso si Plus colapsa</text>
+
+  <!-- BARRERA ASINCRONA -->
+  <rect x="442" y="88" width="76" height="210" rx="10" fill="#F1F5F9" stroke="#64748B" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="480" y="138" text-anchor="middle" font-size="11" font-weight="800" fill="#334155">BARRERA</text>
+  <text x="480" y="154" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569">ASÍNCRONA</text>
+  <text x="480" y="220" text-anchor="middle" font-size="10" fill="#64748B">Solo</text>
+  <text x="480" y="234" text-anchor="middle" font-size="10" fill="#64748B">lectura</text>
+
+  <!-- Flujo asincrono unidireccional -->
+  <path d="M 410 184 L 550 184" stroke="#0284C7" stroke-width="2.5" stroke-dasharray="5,4"/>
+  <circle r="4" fill="#0284C7"><animateMotion dur="1.8s" repeatCount="indefinite" path="M 410 184 L 550 184"/></circle>
+
+  <!-- ZONA CLIENTES CON PICO/FALLA SIMULADA -->
+  <rect x="550" y="80" width="380" height="225" rx="12" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2"/>
+  <text x="740" y="106" text-anchor="middle" font-size="14" font-weight="800" fill="#92400E">⚡ ZONA CLIENTES · LSA Plus y Venta</text>
+
+  <rect x="574" y="128" width="152" height="58" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1.5"/>
+  <text x="650" y="152" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">Proyector Lectura</text>
+  <text x="650" y="170" text-anchor="middle" font-size="10.5" fill="#475569">Agregados ≤ 15 min</text>
+
+  <rect x="754" y="128" width="152" height="58" rx="8" fill="#FEF3C7" stroke="#EA580C" stroke-width="1.8"/>
+  <circle cx="770" cy="144" r="4.5" fill="#EA580C">
+    <animate attributeName="opacity" values="1;0.2;1" dur="0.7s" repeatCount="indefinite"/>
+  </circle>
+  <text x="834" y="152" text-anchor="middle" font-size="11.5" font-weight="700" fill="#9A3412">Cierre de Mes</text>
+  <text x="834" y="170" text-anchor="middle" font-size="10.5" fill="#C2410C">Carga alta / Falla</text>
+
+  <rect x="574" y="210" width="332" height="72" rx="8" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.2"/>
+  <text x="740" y="236" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">Falla contenida en segmento separado</text>
+  <text x="740" y="258" text-anchor="middle" font-size="11" fill="#475569">Al recuperarse, el proyector retoma desde el log</text>
+</svg>

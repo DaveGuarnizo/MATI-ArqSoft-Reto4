@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 310" width="920" height="310" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <rect x="1" y="1" width="918" height="308" rx="14" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+  <text x="460" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#F8FAFC">Carrera contra el Reloj ante Caída de Despachador (EXP-1 vs. EXP-1c)</text>
+  <text x="460" y="54" text-anchor="middle" font-size="12" fill="#94A3B8">Cómo ajustar sesión (6 s → 2 s) y latido (1 s → 0,5 s) cumple la meta de &lt; 2,0 s sin cambiar la arquitectura</text>
+
+  <!-- Escala 0 a 5.5s: x=180 a x=860 (680px) => 123.6 px por segundo -->
+  <!-- Meta 2.0s => x = 180 + 2*123.6 = 427.2 -->
+  <line x1="427" y1="78" x2="427" y2="265" stroke="#22C55E" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <text x="427" y="284" text-anchor="middle" font-size="12" font-weight="800" fill="#4ADE80">META &lt; 2,0 s</text>
+
+  <text x="180" y="284" text-anchor="middle" font-size="11" fill="#94A3B8">0 s (SIGKILL)</text>
+  <text x="765" y="284" text-anchor="middle" font-size="11" fill="#F87171">4,73 s</text>
+
+  <!-- PISTA 1: EXP-1 (6s) -> 4.73s => width = 584px -->
+  <text x="34" y="122" font-size="13" font-weight="700" fill="#FBBF24">EXP-1 (Sesión 6 s)</text>
+  <text x="34" y="140" font-size="10.5" fill="#94A3B8">Latido 1,0 s</text>
+  <rect x="180" y="102" width="680" height="44" rx="8" fill="#1E293B"/>
+  <rect x="180" y="102" width="10" height="44" rx="8" fill="#F59E0B">
+    <animate attributeName="width" values="10;584;584" keyTimes="0;0.7;1" dur="4.2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="774" y="129" font-size="13" font-weight="800" fill="#FBBF24">4,73 s ❌</text>
+
+  <!-- PISTA 2: EXP-1c (2s) -> 1.08s => width = 133px -->
+  <text x="34" y="206" font-size="13" font-weight="700" fill="#34D399">EXP-1c (Sesión 2 s)</text>
+  <text x="34" y="224" font-size="10.5" fill="#94A3B8">Latido 0,5 s</text>
+  <rect x="180" y="186" width="680" height="44" rx="8" fill="#1E293B"/>
+  <rect x="180" y="186" width="10" height="44" rx="8" fill="#10B981">
+    <animate attributeName="width" values="10;133;133" keyTimes="0;0.25;1" dur="4.2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="326" y="213" font-size="13" font-weight="800" fill="#4ADE80">1,08 s ✅</text>
+</svg>

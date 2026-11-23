@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <rect x="1" y="1" width="958" height="378" rx="14" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+  <text x="480" y="34" text-anchor="middle" font-size="18.5" font-weight="800" fill="#F8FAFC">Pico de 5.000 señales/s en Vivo: 1 Cola vs. 24 Colas Paralelas (EXP-3)</text>
+  <text x="480" y="54" text-anchor="middle" font-size="12" fill="#94A3B8">Por qué una sola cola colapsa con ~2,05 M en espera mientras 24 colas absorben hasta 11.500/s en 0,75 s</text>
+
+  <!-- PANEL IZQUIERDO: LINEA BASE (1 COLA) -->
+  <rect x="26" y="76" width="442" height="278" rx="12" fill="#1E1B2E" stroke="#EF4444" stroke-width="1.8"/>
+  <text x="247" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#FCA5A5">❌ LÍNEA BASE · 1 Cola / 1 Worker (~480/s)</text>
+
+  <!-- Entrada 5000/s -->
+  <rect x="44" y="156" width="84" height="54" rx="8" fill="#312E81" stroke="#818CF8" stroke-width="1.5"/>
+  <text x="86" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#E0E7FF">Pico</text>
+  <text x="86" y="198" text-anchor="middle" font-size="11" fill="#A5B4FC">5.000/s</text>
+
+  <!-- Cola acumulandose -->
+  <rect x="156" y="148" width="166" height="70" rx="8" fill="#450A0A" stroke="#F87171" stroke-width="1.5"/>
+  <text x="239" y="168" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FECACA">BACKLOG CRECIENDO (+4.520/s)</text>
+  <!-- Barra de llenado animada -->
+  <rect x="166" y="178" width="146" height="24" rx="5" fill="#1F2937"/>
+  <rect x="166" y="178" width="20" height="24" rx="5" fill="#EF4444">
+    <animate attributeName="width" values="20;146;146" keyTimes="0;0.75;1" dur="3.2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="239" y="194" text-anchor="middle" font-size="10.5" font-weight="800" fill="#FFFFFF">~2,05 M pendientes</text>
+
+  <!-- Worker saturado -->
+  <rect x="352" y="156" width="96" height="54" rx="8" fill="#7F1D1D" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="400" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#FECACA">1 Worker</text>
+  <text x="400" y="198" text-anchor="middle" font-size="10.5" fill="#FCA5A5">Saturado</text>
+
+  <!-- Particulas entrando rapido y saliendo muy lento -->
+  <path d="M 128 183 L 156 183" stroke="#F87171" stroke-width="2.5"/>
+  <circle r="4" fill="#F97316"><animateMotion dur="0.45s" repeatCount="indefinite" path="M 128 183 L 156 183"/></circle>
+  <circle r="4" fill="#F97316"><animateMotion dur="0.45s" begin="0.22s" repeatCount="indefinite" path="M 128 183 L 156 183"/></circle>
+
+  <path d="M 322 183 L 352 183" stroke="#94A3B8" stroke-width="1.8" stroke-dasharray="3,3"/>
+  <circle r="3.5" fill="#FCA5A5"><animateMotion dur="2.6s" repeatCount="indefinite" path="M 322 183 L 352 183"/></circle>
+
+  <!-- Resultado izquierda -->
+  <rect x="44" y="252" width="404" height="82" rx="8" fill="#0F172A" stroke="#7F1D1D" stroke-width="1.2"/>
+  <text x="246" y="278" text-anchor="middle" font-size="13" font-weight="800" fill="#F87171">p99 &gt; 832,8 s · Nunca vuelve a lo normal</text>
+  <text x="246" y="300" text-anchor="middle" font-size="11.5" fill="#CBD5E1">10 minutos después del pico solo procesó el 23,9 %</text>
+  <text x="246" y="320" text-anchor="middle" font-size="11" fill="#94A3B8">Meta LAT-2 (&lt; 5 s) completamente incumplida</text>
+
+  <!-- PANEL DERECHO: TACTICA (24 COLAS) -->
+  <rect x="492" y="76" width="442" height="278" rx="12" fill="#0B2531" stroke="#14B8A6" stroke-width="1.8"/>
+  <text x="713" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#5EEAD4">✅ CON TÁCTICA · 24 Colas / 24 Workers (≈ 11.500/s)</text>
+
+  <!-- Hash -->
+  <rect x="510" y="148" width="90" height="72" rx="8" fill="#134E4A" stroke="#2DD4BF" stroke-width="1.5"/>
+  <text x="555" y="174" text-anchor="middle" font-size="11.5" font-weight="700" fill="#CCFBF1">Hash</text>
+  <text x="555" y="192" text-anchor="middle" font-size="10" fill="#99F6E4">FNV-1a</text>
+  <text x="555" y="208" text-anchor="middle" font-size="10" fill="#5EEAD4">mod 24</text>
+
+  <!-- 5 carriles paralelos representando las 24 colas -->
+  <g stroke="#0EA5E9" stroke-width="2" fill="none">
+    <path d="M 600 158 L 818 134"/>
+    <path d="M 600 171 L 818 160"/>
+    <path d="M 600 184 L 818 184"/>
+    <path d="M 600 197 L 818 208"/>
+    <path d="M 600 210 L 818 234"/>
+  </g>
+  <circle r="3.8" fill="#38BDF8"><animateMotion dur="0.9s" repeatCount="indefinite" path="M 600 158 L 818 134"/></circle>
+  <circle r="3.8" fill="#2DD4BF"><animateMotion dur="0.85s" begin="0.2s" repeatCount="indefinite" path="M 600 171 L 818 160"/></circle>
+  <circle r="3.8" fill="#38BDF8"><animateMotion dur="0.95s" begin="0.4s" repeatCount="indefinite" path="M 600 184 L 818 184"/></circle>
+  <circle r="3.8" fill="#2DD4BF"><animateMotion dur="0.88s" begin="0.1s" repeatCount="indefinite" path="M 600 197 L 818 208"/></circle>
+  <circle r="3.8" fill="#38BDF8"><animateMotion dur="0.92s" begin="0.5s" repeatCount="indefinite" path="M 600 210 L 818 234"/></circle>
+
+  <!-- Etiqueta 24 pipelines -->
+  <rect x="652" y="170" width="112" height="28" rx="6" fill="#0F172A" stroke="#38BDF8" stroke-width="1"/>
+  <text x="708" y="188" text-anchor="middle" font-size="10.5" font-weight="700" fill="#BAE6FD">~210/s por cola</text>
+
+  <!-- Workers salida -->
+  <rect x="818" y="124" width="96" height="120" rx="8" fill="#064E3B" stroke="#34D399" stroke-width="1.5"/>
+  <text x="866" y="156" text-anchor="middle" font-size="12" font-weight="700" fill="#A7F3D0">24 Workers</text>
+  <text x="866" y="178" text-anchor="middle" font-size="10.5" fill="#6EE7B7">En paralelo</text>
+  <text x="866" y="198" text-anchor="middle" font-size="10.5" fill="#6EE7B7">0 desorden</text>
+  <text x="866" y="220" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4ADE80">Sin backlog</text>
+
+  <!-- Resultado derecha -->
+  <rect x="510" y="252" width="404" height="82" rx="8" fill="#0F172A" stroke="#0F766E" stroke-width="1.2"/>
+  <text x="712" y="278" text-anchor="middle" font-size="13" font-weight="800" fill="#4ADE80">p99 = 0,749 s · Normaliza en ≤ 1,4 s</text>
+  <text x="712" y="300" text-anchor="middle" font-size="11.5" fill="#CBD5E1">100 % procesado (7,5 M señales) · 0 fuera de orden</text>
+  <text x="712" y="320" text-anchor="middle" font-size="11" fill="#5EEAD4">Capacidad lista para 40.000 camiones (ESC-2)</text>
+</svg>

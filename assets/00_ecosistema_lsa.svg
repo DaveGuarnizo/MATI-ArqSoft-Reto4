@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #FFFFFF;">
+  <rect x="1" y="1" width="958" height="438" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+<text x="480" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#0F172A">Ecosistema LogiSur Andina (LSA) · Visión General</text>
+<text x="480" y="60" text-anchor="middle" font-size="13" fill="#475569">Colombia · Ecuador · Perú | 18.000 → 40.000 camiones | Picos de 5.000 señales/s (proyección 11.000/s)</text>
+<rect x="36" y="95" width="210" height="295" rx="10" fill="#FFF7ED" stroke="#FB923C" stroke-width="2"/>
+<text x="141" y="125" text-anchor="middle" font-size="15" font-weight="700" fill="#9A3412">Flota en Ruta (OBU)</text>
+<text x="52" y="158" font-size="12" fill="#431407">• Posición GPS y velocidad</text>
+<text x="52" y="184" font-size="12" fill="#431407">• Temperatura de carga</text>
+<text x="52" y="210" font-size="12" fill="#431407">• Apertura de puertas</text>
+<text x="52" y="236" font-size="12" fill="#431407">• Desvíos y accidentes</text>
+<text x="52" y="262" font-size="12" fill="#431407">• Cámaras cabina y ruta</text>
+<text x="52" y="288" font-size="12" fill="#431407">• Botón de pánico (&lt; 2 s)</text>
+<text x="52" y="314" font-size="12" fill="#431407">• Certificado mTLS por OBU</text>
+<text x="52" y="340" font-size="12" fill="#431407">• Reintento hasta acuse</text>
+<path d="M 246 175 L 312 175" stroke="#DC2626" stroke-width="3" fill="none"/>
+<polygon points="312,175 302,169 302,181" fill="#DC2626"/>
+<text x="279" y="165" text-anchor="middle" font-size="10.5" font-weight="700" fill="#DC2626">Pánico</text>
+<path d="M 246 285 L 312 285" stroke="#2563EB" stroke-width="3" fill="none"/>
+<polygon points="312,285 302,279 302,291" fill="#2563EB"/>
+<text x="279" y="275" text-anchor="middle" font-size="10.5" font-weight="700" fill="#2563EB">Telemetría</text>
+<rect x="315" y="95" width="335" height="295" rx="10" fill="#FEF2F2" stroke="#DC2626" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="482" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#991B1B">Zona Crítica · Central (7x24x365)</text>
+<rect x="333" y="138" width="299" height="82" rx="8" fill="#FFFFFF" stroke="#EF4444" stroke-width="1.5"/>
+<text x="482" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#B91C1C">Carril Exclusivo de Pánicos (DIS-1)</text>
+<text x="482" y="180" text-anchor="middle" font-size="11.5" fill="#334155">Receptores x3 → Brokers RF=3 → Despachadores x2</text>
+<text x="482" y="200" text-anchor="middle" font-size="11.5" font-weight="600" fill="#15803D">✓ Acuse tras replicar · Meta &lt; 2 s · 0 pérdidas</text>
+<rect x="333" y="234" width="299" height="92" rx="8" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="482" y="256" text-anchor="middle" font-size="13" font-weight="700" fill="#1D4ED8">24 Colas Paralelas (LAT-1 / LAT-2 / ESC-2)</text>
+<text x="482" y="276" text-anchor="middle" font-size="11.5" fill="#334155">Partición hash(camionId) mod 24 · 1 worker/cola</text>
+<text x="482" y="296" text-anchor="middle" font-size="11.5" fill="#334155">Orden por vehículo · Capacidad ≈ 11.500/s</text>
+<text x="482" y="314" text-anchor="middle" font-size="11.5" font-weight="600" fill="#15803D">✓ Guardado p99 0,35 s · Detección p99 0,75 s</text>
+<rect x="333" y="338" width="299" height="38" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+<text x="482" y="362" text-anchor="middle" font-size="11.5" font-weight="700" fill="#92400E">Monitor Heartbeat (latido 0,5 s · sesión 2 s)</text>
+<path d="M 650 240 L 708 240" stroke="#64748B" stroke-width="2.5" stroke-dasharray="5,4" fill="none"/>
+<polygon points="708,240 698,234 698,246" fill="#64748B"/>
+<text x="679" y="220" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">Solo lectura</text>
+<text x="679" y="232" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">asíncrona</text>
+<rect x="710" y="95" width="214" height="140" rx="10" fill="#F0FDF4" stroke="#16A34A" stroke-width="2"/>
+<text x="817" y="122" text-anchor="middle" font-size="14" font-weight="700" fill="#166534">LSA Plus (Aislada)</text>
+<text x="724" y="148" font-size="11.5" fill="#14532D">• Analítica (día/mes/año)</text>
+<text x="724" y="170" font-size="11.5" fill="#14532D">• Consultas p95 ≤ 3 s</text>
+<text x="724" y="192" font-size="11.5" fill="#14532D">• Multi-tenant estricto</text>
+<text x="724" y="214" font-size="11.5" fill="#14532D">• Módulo financiero / ERP</text>
+<rect x="710" y="250" width="214" height="140" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+<text x="817" y="277" text-anchor="middle" font-size="14" font-weight="700" fill="#1E40AF">Venta en Línea</text>
+<text x="724" y="303" font-size="11.5" fill="#1E3A8A">• Portal / App responsive</text>
+<text x="724" y="325" font-size="11.5" fill="#1E3A8A">• Biometría y riesgo</text>
+<text x="724" y="347" font-size="11.5" fill="#1E3A8A">• Firma Manager (&gt; 50 veh.)</text>
+<text x="724" y="369" font-size="11.5" fill="#1E3A8A">• Pasarela PCI DSS</text>
+<text x="480" y="420" text-anchor="middle" font-size="11.5" font-weight="600" fill="#64748B">Principio de diseño: Una falla o pico en LSA Plus / Venta en línea nunca afecta a la Central de Emergencias.</text>
+</svg>

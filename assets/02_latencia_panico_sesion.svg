@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 430" width="840" height="430" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #FFFFFF;">
+  <rect x="1" y="1" width="838" height="428" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+<text x="420" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="#0F172A">Latencia de Pánico durante Falla de Despachador (EXP-1 vs EXP-1c)</text>
+<text x="420" y="56" text-anchor="middle" font-size="12.5" fill="#475569">Ajustar sesión de 6 s a 2 s (y latido a 0,5 s) reduce el p99 por debajo de la meta de 2,0 s sin cambiar arquitectura</text>
+<line x1="85" y1="345.0" x2="785" y2="345.0" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="349.0" text-anchor="end" font-size="11" fill="#64748B">0 s</text>
+<line x1="85" y1="309.3" x2="785" y2="309.3" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="313.3" text-anchor="end" font-size="11" fill="#64748B">1 s</text>
+<line x1="85" y1="273.6" x2="785" y2="273.6" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="277.6" text-anchor="end" font-size="11" fill="#64748B">2 s</text>
+<line x1="85" y1="237.9" x2="785" y2="237.9" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="241.9" text-anchor="end" font-size="11" fill="#64748B">3 s</text>
+<line x1="85" y1="202.1" x2="785" y2="202.1" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="206.1" text-anchor="end" font-size="11" fill="#64748B">4 s</text>
+<line x1="85" y1="166.4" x2="785" y2="166.4" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="170.4" text-anchor="end" font-size="11" fill="#64748B">5 s</text>
+<line x1="85" y1="130.7" x2="785" y2="130.7" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="134.7" text-anchor="end" font-size="11" fill="#64748B">6 s</text>
+<line x1="85" y1="95.0" x2="785" y2="95.0" stroke="#E2E8F0" stroke-width="1"/>
+<text x="75" y="99.0" text-anchor="end" font-size="11" fill="#64748B">7 s</text>
+<line x1="85" y1="273.6" x2="785" y2="273.6" stroke="#15803D" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="95" y="267.6" font-size="11.5" font-weight="700" fill="#15803D">Meta de pánico (&lt; 2,0 s)</text>
+<rect x="118.5" y="344.8" width="50" height="0.2" rx="4" fill="#F59E0B"/>
+<rect x="176.5" y="344.3" width="50" height="0.7" rx="4" fill="#0F766E"/>
+<text x="143.5" y="338.8" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B45309">0.01 s</text>
+<text x="201.5" y="338.3" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0F766E">0.02 s</text>
+<text x="172.5" y="367" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">Mediana (p50)</text>
+<rect x="293.5" y="344.3" width="50" height="0.7" rx="4" fill="#F59E0B"/>
+<rect x="351.5" y="343.6" width="50" height="1.4" rx="4" fill="#0F766E"/>
+<text x="318.5" y="338.3" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B45309">0.02 s</text>
+<text x="376.5" y="337.6" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0F766E">0.04 s</text>
+<text x="347.5" y="367" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">Percentil 95</text>
+<rect x="468.5" y="176.1" width="50" height="168.9" rx="4" fill="#F59E0B"/>
+<rect x="526.5" y="306.4" width="50" height="38.6" rx="4" fill="#0F766E"/>
+<text x="493.5" y="170.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B45309">4.73 s</text>
+<text x="551.5" y="300.4" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0F766E">1.08 s</text>
+<text x="522.5" y="367" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">Percentil 99 (Meta)</text>
+<rect x="643.5" y="135.5" width="50" height="209.5" rx="4" fill="#F59E0B"/>
+<rect x="701.5" y="276.1" width="50" height="68.9" rx="4" fill="#0F766E"/>
+<text x="668.5" y="129.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B45309">5.87 s</text>
+<text x="726.5" y="270.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0F766E">1.93 s</text>
+<text x="697.5" y="367" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">Percentil 99.9</text>
+<rect x="195" y="392" width="14" height="14" rx="3" fill="#F59E0B"/>
+<text x="215" y="404" font-size="12" fill="#1E293B">EXP-1 (Sesión 6 s · Latido 1 s)</text>
+<rect x="465" y="392" width="14" height="14" rx="3" fill="#0F766E"/>
+<text x="485" y="404" font-size="12" fill="#1E293B">EXP-1c (Sesión 2 s · Latido 0,5 s)</text>
+</svg>

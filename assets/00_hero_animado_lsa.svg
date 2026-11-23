@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 400" width="980" height="400" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="redGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </linearGradient>
+    <linearGradient id="tealGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="980" height="400" rx="16" fill="url(#bgGrad)"/>
+
+  <!-- Header -->
+  <text x="490" y="38" text-anchor="middle" font-size="21" font-weight="800" fill="#F8FAFC" letter-spacing="0.5">LOGISUR ANDINA (LSA) · ARQUITECTURA DE FLUJO EN VIVO</text>
+  <text x="490" y="59" text-anchor="middle" font-size="12.5" fill="#94A3B8">Carril Express de Pánicos (&lt; 2 s · RF=3 · 0 pérdidas) separado de 24 Colas Paralelas de Telemetría (5.000 → 11.500 señales/s)</text>
+
+  <!-- NODO 1: OBU -->
+  <rect x="30" y="130" width="165" height="145" rx="12" fill="#1E293B" stroke="#F97316" stroke-width="2"/>
+  <text x="112" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#FDBA74">Flota OBU</text>
+  <text x="112" y="180" text-anchor="middle" font-size="11.5" fill="#CBD5E1">18k → 40k camiones</text>
+  <text x="112" y="200" text-anchor="middle" font-size="11" fill="#94A3B8">mTLS · Reintento T2</text>
+  <rect x="48" y="218" width="129" height="24" rx="12" fill="#7F1D1D" stroke="#EF4444" stroke-width="1"/>
+  <circle cx="64" cy="230" r="4.5" fill="#EF4444">
+    <animate attributeName="opacity" values="1;0.2;1" dur="0.9s" repeatCount="indefinite"/>
+  </circle>
+  <text x="118" y="234" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FECACA">Botón de Pánico</text>
+  <text x="112" y="262" text-anchor="middle" font-size="10" fill="#38BDF8">Telemetría 5.000/s</text>
+
+  <!-- NODO 2: HAProxy + Receptores -->
+  <rect x="245" y="130" width="175" height="145" rx="12" fill="#1E293B" stroke="#A855F7" stroke-width="2"/>
+  <text x="332" y="158" text-anchor="middle" font-size="14" font-weight="700" fill="#D8B4FE">Recepción ×3</text>
+  <text x="332" y="178" text-anchor="middle" font-size="11" fill="#CBD5E1">HAProxy + Go sin estado</text>
+  <text x="332" y="198" text-anchor="middle" font-size="11" fill="#94A3B8">Hash FNV-1a(truck_id)</text>
+  <rect x="262" y="216" width="141" height="44" rx="8" fill="#0F172A" stroke="#22C55E" stroke-width="1"/>
+  <text x="332" y="234" text-anchor="middle" font-size="10.5" font-weight="700" fill="#86EFAC">Acuse HTTP 200</text>
+  <text x="332" y="250" text-anchor="middle" font-size="10" fill="#CBD5E1">solo tras acks=all (RF=3)</text>
+
+  <!-- Linea OBU -> Recepcion -->
+  <path id="pathIn" d="M 195 202 L 245 202" stroke="#64748B" stroke-width="2.5" fill="none"/>
+  <circle r="4" fill="#F97316" filter="url(#glow)">
+    <animateMotion dur="1.0s" repeatCount="indefinite" path="M 195 202 L 245 202"/>
+  </circle>
+
+  <!-- Acuse retorno animado -->
+  <path d="M 245 256 L 195 256" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="4,3" fill="none"/>
+  <circle r="3" fill="#4ADE80">
+    <animateMotion dur="1.4s" repeatCount="indefinite" path="M 245 256 L 195 256"/>
+  </circle>
+
+  <!-- CARRIL SUPERIOR: PANICOS -->
+  <rect x="475" y="88" width="235" height="96" rx="12" fill="#450A0A" stroke="#EF4444" stroke-width="2"/>
+  <text x="592" y="112" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FCA5A5">Carril Exclusivo Pánicos</text>
+  <text x="592" y="132" text-anchor="middle" font-size="11" fill="#FECACA">Redpanda RF=3 · Despachadores ×2</text>
+  <text x="592" y="150" text-anchor="middle" font-size="11" fill="#F87171">Commit solo tras guardar en BD</text>
+  <text x="592" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#4ADE80">✓ EXP-1c: p99 = 1,08 s · 0 pérdidas</text>
+
+  <!-- Ruta animada Panicos -->
+  <path d="M 420 165 C 448 165, 448 136, 475 136" stroke="url(#redGlow)" stroke-width="3" fill="none"/>
+  <circle r="5" fill="#EF4444" filter="url(#glow)">
+    <animateMotion dur="0.9s" repeatCount="indefinite" path="M 420 165 C 448 165, 448 136, 475 136"/>
+  </circle>
+
+  <!-- CARRIL INFERIOR: 24 COLAS TELEMETRIA -->
+  <rect x="475" y="210" width="235" height="114" rx="12" fill="#0C4A6E" stroke="#38BDF8" stroke-width="2"/>
+  <text x="592" y="234" text-anchor="middle" font-size="13.5" font-weight="700" fill="#BAE6FD">24 Colas Paralelas</text>
+  <text x="592" y="254" text-anchor="middle" font-size="11" fill="#E0F2FE">1 Escritor COPY + 1 Worker / cola</text>
+  <text x="592" y="272" text-anchor="middle" font-size="11" fill="#7DD3FC">Orden estricto por camión (0 desorden)</text>
+  <text x="592" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#4ADE80">✓ EXP-3: p99 = 0,75 s (vs &gt;833 s)</text>
+  <text x="592" y="310" text-anchor="middle" font-size="10.5" fill="#CBD5E1">Capacidad ≈ 11.500 señales/s</text>
+
+  <!-- Rutas animadas Telemetria (3 hilos paralelos) -->
+  <path d="M 420 225 C 448 225, 448 245, 475 245" stroke="url(#tealGlow)" stroke-width="2" fill="none"/>
+  <path d="M 420 235 C 448 235, 448 265, 475 265" stroke="url(#tealGlow)" stroke-width="2" fill="none"/>
+  <path d="M 420 245 C 448 245, 448 285, 475 285" stroke="url(#tealGlow)" stroke-width="2" fill="none"/>
+  <circle r="3.5" fill="#38BDF8">
+    <animateMotion dur="1.1s" repeatCount="indefinite" path="M 420 225 C 448 225, 448 245, 475 245"/>
+  </circle>
+  <circle r="3.5" fill="#2DD4BF">
+    <animateMotion dur="1.3s" begin="0.3s" repeatCount="indefinite" path="M 420 235 C 448 235, 448 265, 475 265"/>
+  </circle>
+  <circle r="3.5" fill="#38BDF8">
+    <animateMotion dur="1.0s" begin="0.6s" repeatCount="indefinite" path="M 420 245 C 448 245, 448 285, 475 285"/>
+  </circle>
+
+  <!-- NODO 4: SALIDAS -->
+  <rect x="765" y="88" width="185" height="96" rx="12" fill="#1E293B" stroke="#F87171" stroke-width="1.8"/>
+  <text x="857" y="116" text-anchor="middle" font-size="13" font-weight="700" fill="#FECACA">Protocolo de Socorro</text>
+  <text x="857" y="138" text-anchor="middle" font-size="11" fill="#CBD5E1">Autoridades · Ambulancias</text>
+  <text x="857" y="156" text-anchor="middle" font-size="11" fill="#CBD5E1">Dueño de carga · Aseguradora</text>
+  <text x="857" y="174" text-anchor="middle" font-size="10.5" fill="#4ADE80">Despacho paralelo idempotente</text>
+
+  <rect x="765" y="210" width="185" height="114" rx="12" fill="#1E293B" stroke="#2DD4BF" stroke-width="1.8"/>
+  <text x="857" y="236" text-anchor="middle" font-size="13" font-weight="700" fill="#99F6E4">Operador &amp; LSA Plus</text>
+  <text x="857" y="258" text-anchor="middle" font-size="11" fill="#CBD5E1">Consola de alertas (&lt; 5 s)</text>
+  <text x="857" y="276" text-anchor="middle" font-size="11" fill="#CBD5E1">PostgreSQL + Proyector</text>
+  <text x="857" y="294" text-anchor="middle" font-size="10.5" fill="#94A3B8">Aislamiento asíncrono total</text>
+  <text x="857" y="312" text-anchor="middle" font-size="10.5" fill="#4ADE80">Consultas Plus p95 ≤ 3 s</text>
+
+  <!-- Flechas finales animadas -->
+  <path d="M 710 136 L 765 136" stroke="#EF4444" stroke-width="2.5" fill="none"/>
+  <circle r="4.5" fill="#EF4444" filter="url(#glow)">
+    <animateMotion dur="0.8s" repeatCount="indefinite" path="M 710 136 L 765 136"/>
+  </circle>
+
+  <path d="M 710 267 L 765 267" stroke="#2DD4BF" stroke-width="2.5" fill="none"/>
+  <circle r="4" fill="#2DD4BF">
+    <animateMotion dur="1.1s" repeatCount="indefinite" path="M 710 267 L 765 267"/>
+  </circle>
+
+  <!-- Barra inferior Heartbeat -->
+  <rect x="30" y="344" width="920" height="36" rx="8" fill="#0F172A" stroke="#F59E0B" stroke-width="1.2"/>
+  <circle cx="54" cy="362" r="5" fill="#F59E0B">
+    <animate attributeName="r" values="4;7;4" dur="1.0s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.4;1" dur="1.0s" repeatCount="indefinite"/>
+  </circle>
+  <text x="72" y="366" font-size="11.5" font-weight="600" fill="#FDE68A">Monitor Heartbeat Activo: latido cada 0,5 s · sesión 2 s · detección de caída en ~0,37 s · 75 corridas validadas</text>
+</svg>

@@ -1,0 +1,10 @@
+# Obsidian local workspace & plugins
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# macOS
+.DS_Store
+
+# Carpeta temporal de ejecución local
+resultados/
