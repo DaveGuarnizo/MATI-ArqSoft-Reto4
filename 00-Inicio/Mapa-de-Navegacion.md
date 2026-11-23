@@ -57,4 +57,4 @@ graph TD
 
 ## 🔗 Enlaces Rápidos
 - ¿Dudas sobre algún acrónimo técnico? Consulta el [📖 Glosario y Tácticas](Glosario-y-Tacticas.md).
-- ¿Necesitas una vista condensada para imprimir o compartir? Revisa el [📄 One-Pager Ejecutivo](../LogiSur-Andina-Propuesta-Arquitectura.md).
+- ¿Necesitas una vista condensada para imprimir o compartir? Revisa el [Resumen en una página](LogiSur-Andina-Propuesta-Arquitectura.md).

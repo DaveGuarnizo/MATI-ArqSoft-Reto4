@@ -33,12 +33,12 @@ En este repositorio reunimos la propuesta de arquitectura para la plataforma de 
 
 ## Qué probamos y qué encontramos
 
-| Escenario | Meta | Con nuestra arquitectura | Línea base | Detalle |
-| :--- | :---: | :---: | :---: | :--- |
-| **Caída / pérdida de nodo (`DIS-1`)** | `≥ 99,99 %` pánicos | **`100 %` (`0` perdidos)** | `~35.600` perdidos (`~61 %`) | [EXP-1 y EXP-1b](04-Experimentos/EXP-1-Disponibilidad-y-Fallas.md) |
-| **Tiempo de pánico durante la falla** | `< 2,0 s` | **`1,08 s`** (`p99`, sesión `2 s`) | `4,73 s` (sesión `6 s`) | [EXP-1c](04-Experimentos/EXP-1-Disponibilidad-y-Fallas.md) |
-| **Pico de `5.000 señales/s` (`LAT-2`)** | `p99 < 5 s` | **`0,75 s`** · normaliza en `≤ 1,4 s` | `> 833 s` · `2,05 M` en cola | [EXP-2 y EXP-3](04-Experimentos/EXP-2-y-EXP-3-Picos-de-Carga.md) |
-| **Crecimiento a `40.000` camiones (`ESC-2`)** | `≈ 11.000/s` | **`≈ 11.500/s`** (`24` colas · desv. `~3 %`) | `~480/s` (`1` cola) | [EXP-4](04-Experimentos/EXP-4-Reparto-y-Escalabilidad.md) |
+| Escenario                                     |        Meta         |           Con nuestra arquitectura           |          Línea base          | Detalle                                                            |
+| :-------------------------------------------- | :-----------------: | :------------------------------------------: | :--------------------------: | :----------------------------------------------------------------- |
+| **Caída / pérdida de nodo (`DIS-1`)**         | `≥ 99,99 %` pánicos |          **`100 %` (`0` perdidos)**          | `~35.600` perdidos (`~61 %`) | [EXP-1 y EXP-1b](04-Experimentos/EXP-1-Disponibilidad-y-Fallas.md) |
+| **Tiempo de pánico durante la falla**         |      `< 2,0 s`      |      **`1,08 s`** (`p99`, sesión `2 s`)      |   `4,73 s` (sesión `6 s`)    | [EXP-1c](04-Experimentos/EXP-1-Disponibilidad-y-Fallas.md)         |
+| **Pico de `5.000 señales/s` (`LAT-2`)**       |     `p99 < 5 s`     |    **`0,75 s`** · normaliza en `≤ 1,4 s`     | `> 833 s` · `2,05 M` en cola | [EXP-2 y EXP-3](04-Experimentos/EXP-2-y-EXP-3-Picos-de-Carga.md)   |
+| **Crecimiento a `40.000` camiones (`ESC-2`)** |    `≈ 11.000/s`     | **`≈ 11.500/s`** (`24` colas · desv. `~3 %`) |     `~480/s` (`1` cola)      | [EXP-4](04-Experimentos/EXP-4-Reparto-y-Escalabilidad.md)          |
 
 ---
 
@@ -50,7 +50,7 @@ En este repositorio reunimos la propuesta de arquitectura para la plataforma de 
 4. **Resultados:** [Resumen visual](04-Experimentos/Dashboard-Resultados.md) · [EXP-1 / 1b / 1c](04-Experimentos/EXP-1-Disponibilidad-y-Fallas.md) · [EXP-2 y EXP-3](04-Experimentos/EXP-2-y-EXP-3-Picos-de-Carga.md) · [EXP-4](04-Experimentos/EXP-4-Reparto-y-Escalabilidad.md)
 5. **Cierre:** [Bitácora de hallazgos](05-Aprendizajes/Bitacora-de-Hallazgos.md) · [Limitaciones y siguiente paso](05-Aprendizajes/Limitaciones-y-Proximos-Pasos.md)
 
-**Otros archivos:** [Guión de presentación](00-Inicio/Mapa-de-Navegacion.md) · [Glosario](00-Inicio/Glosario-y-Tacticas.md) · [Resumen en una página](LogiSur-Andina-Propuesta-Arquitectura.md) · [Informe HTML](evidencia/informe-experimental.html) · [docker-compose.yml](evidencia/docker-compose.yml)
+**Otros archivos:** [Guión de presentación](00-Inicio/Mapa-de-Navegacion.md) · [Glosario](00-Inicio/Glosario-y-Tacticas.md) · [Resumen en una página](00-Inicio/LogiSur-Andina-Propuesta-Arquitectura.md) · [Informe HTML](evidencia/informe-experimental.html) · [docker-compose.yml](evidencia/docker-compose.yml)
 
 ---
 
