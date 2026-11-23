@@ -27,63 +27,42 @@
     display: flex;
     min-height: 100vh;
   }
-  /* Sidebar */
   aside {
-    width: 260px;
+    width: 264px;
     background: var(--panel);
     border-right: 1px solid var(--border);
     padding: 20px 16px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
   }
-  .brand {
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--text);
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 6px;
-  }
+  .brand { font-size: 16px; font-weight: 800; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
   .brand span { display: block; font-size: 11px; color: var(--teal); font-weight: 600; margin-top: 2px; }
   .nav-btn {
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--muted);
-    text-align: left;
-    padding: 10px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13.5px;
-    font-weight: 600;
-    transition: all 0.15s ease;
+    background: transparent; border: 1px solid transparent; color: var(--muted);
+    text-align: left; padding: 9px 12px; border-radius: 8px; cursor: pointer;
+    font-size: 13px; font-weight: 600; transition: all 0.15s ease;
   }
   .nav-btn:hover { background: rgba(56, 189, 248, 0.08); color: var(--text); }
   .nav-btn.active { background: rgba(20, 184, 166, 0.16); border-color: var(--teal); color: #5eead4; }
   .hint { margin-top: auto; font-size: 11.5px; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--border); }
 
-  /* Main content */
-  main { flex: 1; padding: 28px 36px; max-width: 1240px; margin: 0 auto; width: 100%; }
+  main { flex: 1; padding: 26px 36px; max-width: 1240px; margin: 0 auto; width: 100%; }
   .slide { display: none; animation: fadeIn 0.25s ease; }
   .slide.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-  h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
-  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+  h1 { font-size: 27px; font-weight: 800; margin-bottom: 6px; }
+  .subtitle { color: var(--muted); font-size: 14.5px; margin-bottom: 18px; }
 
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 18px 0; }
-  .kpi {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-  }
-  .kpi .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
-  .kpi .val { font-size: 26px; font-weight: 800; margin: 4px 0; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+  .kpi { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .kpi .label { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+  .kpi .val { font-size: 25px; font-weight: 800; margin: 4px 0; }
   .kpi .sub { font-size: 12px; color: #cbd5e1; }
   .val.green { color: var(--green); }
   .val.red { color: var(--red); }
@@ -91,68 +70,72 @@
   .val.amber { color: var(--amber); }
 
   .visual-box {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 10px;
-    margin: 16px 0;
-    border: 1px solid var(--border);
-    text-align: center;
+    background: #ffffff; border-radius: 12px; padding: 10px; margin: 14px 0;
+    border: 1px solid var(--border); text-align: center;
   }
   .visual-box.dark { background: #0f172a; }
   .visual-box img { max-width: 100%; height: auto; border-radius: 8px; cursor: zoom-in; display: block; margin: 0 auto; }
   .caption { font-size: 12px; color: #64748b; margin-top: 6px; }
   .visual-box.dark .caption { color: #94a3b8; }
 
-  /* Interactive Controls */
   .sim-panel {
-    background: var(--card);
-    border: 1px solid var(--teal);
-    border-radius: 12px;
-    padding: 18px 20px;
-    margin: 18px 0;
+    background: var(--card); border: 1px solid var(--teal); border-radius: 12px;
+    padding: 16px 20px; margin: 16px 0;
   }
-  .sim-title { font-size: 15px; font-weight: 700; color: #5eead4; margin-bottom: 12px; }
-  .toggle-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  .sim-title { font-size: 14.5px; font-weight: 700; color: #5eead4; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .toggle-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
   .pill {
-    background: #0f172a;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s;
+    background: #0f172a; border: 1px solid var(--border); color: var(--text);
+    padding: 7px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s;
   }
+  .pill:hover { border-color: var(--blue); }
   .pill.active { background: var(--teal); border-color: var(--teal); color: #042f2e; }
-  .pill.danger.active { background: var(--red); border-color: var(--red); color: #ffffff; }
+  .pill.danger { border-color: #7f1d1d; color: #fca5a5; }
+  .pill.danger:hover, .pill.danger.active { background: var(--red); border-color: var(--red); color: #ffffff; }
 
+  canvas { width: 100%; border-radius: 10px; background: #0f172a; border: 1px solid var(--border); display: block; }
   input[type="range"] { width: 100%; accent-color: var(--teal); cursor: pointer; margin: 8px 0; }
+
+  /* Interactive animated bar chart */
+  .bar-chart { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+  .bar-row { display: grid; grid-template-columns: 190px 1fr 120px; align-items: center; gap: 12px; font-size: 13px; }
+  .bar-track { background: #0f172a; height: 26px; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid var(--border); }
+  .bar-fill { height: 100%; border-radius: 6px; transition: width 0.8s cubic-bezier(.22,1,.36,1); display: flex; align-items: center; padding-left: 8px; font-size: 11.5px; font-weight: 700; color: #fff; }
+  .bar-fill.teal { background: linear-gradient(90deg, #0f766e, #14b8a6); }
+  .bar-fill.red { background: linear-gradient(90deg, #991b1b, #ef4444); }
+  .bar-fill.amber { background: linear-gradient(90deg, #b45309, #f59e0b); }
+
+  /* Interactive 24-partition bars */
+  .part-grid { display: flex; align-items: flex-end; gap: 4px; height: 150px; padding: 14px 10px 6px; background: #0f172a; border-radius: 10px; border: 1px solid var(--border); position: relative; }
+  .part-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; cursor: pointer; }
+  .part-bar { width: 100%; background: linear-gradient(180deg, #38bdf8, #0284c7); border-radius: 4px 4px 0 0; transition: height 0.7s ease, background 0.15s; }
+  .part-col:hover .part-bar { background: #2dd4bf; }
+  .part-lbl { font-size: 9.5px; color: var(--muted); margin-top: 4px; }
+  #part-tooltip { font-size: 12.5px; color: #5eead4; font-weight: 600; margin-top: 8px; min-height: 20px; }
+
+  /* FAQ Accordion */
+  details.faq { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+  details.faq[open] { border-color: var(--teal); }
+  details.faq summary { font-weight: 700; cursor: pointer; font-size: 14.5px; color: #e2e8f0; }
+  details.faq p { margin-top: 8px; color: #cbd5e1; font-size: 13.5px; }
 
   table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
   th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
   th { color: var(--blue); font-weight: 700; background: rgba(15, 23, 42, 0.5); }
 
-  .footer-nav {
-    display: flex; justify-content: space-between; margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border);
-  }
-  .btn-step {
-    background: var(--card); border: 1px solid var(--border); color: var(--text);
-    padding: 9px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13.5px;
-  }
+  .footer-nav { display: flex; justify-content: space-between; margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .btn-step { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 9px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13.5px; }
   .btn-step:hover { border-color: var(--teal); color: #5eead4; }
 
-  /* Lightbox */
-  #lightbox {
-    display: none; position: fixed; inset: 0; background: rgba(2, 6, 23, 0.92);
-    z-index: 999; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out;
-  }
+  #lightbox { display: none; position: fixed; inset: 0; background: rgba(2, 6, 23, 0.92); z-index: 999; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
   #lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 10px; background: #fff; padding: 6px; }
 
   @media (max-width: 860px) {
     body { flex-direction: column; }
     aside { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; }
-    main { padding: 18px; }
+    main { padding: 16px; }
+    .bar-row { grid-template-columns: 120px 1fr 80px; }
   }
 </style>
 </head>
@@ -161,19 +144,20 @@
 <aside>
   <div class="brand">🚛 LogiSur Andina<span>ARTI 4109 · Reto 4 · MATI</span></div>
   <button class="nav-btn active" onclick="go(0)">1. Portada y Flujo en Vivo</button>
-  <button class="nav-btn" onclick="go(1)">2. Contexto y los 10 ASR</button>
+  <button class="nav-btn" onclick="go(1)">2. Contexto y los 4 ASR ★</button>
   <button class="nav-btn" onclick="go(2)">3. Funcional y Concurrencia</button>
   <button class="nav-btn" onclick="go(3)">4. Contenedores y Aislamiento</button>
   <button class="nav-btn" onclick="go(4)">5. Despliegue Multi-Región</button>
-  <button class="nav-btn" onclick="go(5)">6. Simulador Fallas (EXP-1)</button>
-  <button class="nav-btn" onclick="go(6)">7. Simulador Picos (EXP-2/3)</button>
-  <button class="nav-btn" onclick="go(7)">8. Calculadora 40k (EXP-4)</button>
+  <button class="nav-btn" onclick="go(5)">6. 🔥 Chaos Simulator (EXP-1)</button>
+  <button class="nav-btn" onclick="go(6)">7. ▶️ Carrera Backlog (EXP-3)</button>
+  <button class="nav-btn" onclick="go(7)">8. ⚖️ Escala 40k y 24 Colas</button>
   <button class="nav-btn" onclick="go(8)">9. Aprendizajes y Roadmap</button>
-  <div class="hint">Usa teclas <b>←</b> y <b>→</b> para navegar · Clic en cualquier imagen para zoom.</div>
+  <button class="nav-btn" onclick="go(9)">10. 🎤 Preguntas del Jurado</button>
+  <div class="hint">Teclas <b>←</b> y <b>→</b> para avanzar · Clic en diagramas para zoom.</div>
 </aside>
 
 <main>
-  <!-- SLIDE 0: PORTADA -->
+  <!-- SLIDE 0 -->
   <section class="slide active">
     <h1>LogiSur Andina (LSA) · Propuesta de Arquitectura</h1>
     <p class="subtitle">Validada empíricamente con <b>75 corridas controladas</b> en 12 contenedores Docker · Colombia, Ecuador y Perú</p>
@@ -188,13 +172,13 @@
     </div>
   </section>
 
-  <!-- SLIDE 1: CONTEXTO Y ASR -->
+  <!-- SLIDE 1 -->
   <section class="slide">
     <h1>Contexto de Negocio y los 4 ASR Críticos</h1>
     <p class="subtitle">Tres frentes (Central de Emergencias, Venta en Línea y LSA Plus) con aislamiento absoluto</p>
     <div class="visual-box">
-      <img src="assets/slides/portada-camion-lsa.png" style="max-height:280px;" alt="Flota LSA" onclick="zoom(this)" />
-      <div class="caption">Incidente crítico: 4 minutos de retraso en pánico durante paro nacional → Meta &lt; 2 s</div>
+      <img src="assets/slides/portada-camion-lsa.png" style="max-height:260px;" alt="Flota LSA" onclick="zoom(this)" />
+      <div class="caption">Incidente real: 4 minutos de retraso en pánico durante paro nacional → Meta &lt; 2 s</div>
     </div>
     <table>
       <thead><tr><th>ASR Crítico</th><th>Estímulo</th><th>Meta</th><th>Decisión Arquitectónica</th></tr></thead>
@@ -207,127 +191,164 @@
     </table>
   </section>
 
-  <!-- SLIDE 2: FUNCIONAL Y CONCURRENCIA -->
+  <!-- SLIDE 2 -->
   <section class="slide">
     <h1>Vista Funcional y de Concurrencia (Tácticas T1–T4)</h1>
     <p class="subtitle">Acuse síncrono tras replicar (durabilidad) separado de detección asíncrona en 24 pipelines</p>
-    <div class="visual-box">
-      <img src="assets/slides/vista-funcional.png" alt="Vista Funcional" onclick="zoom(this)" />
-      <div class="caption">Vista Funcional · Clic para ampliar</div>
-    </div>
-    <div class="visual-box">
-      <img src="assets/slides/vista-concurrencia.png" alt="Vista de Concurrencia" onclick="zoom(this)" />
-      <div class="caption">Vista de Concurrencia · 3 receptores, 2 despachadores, 24 pipelines independientes</div>
-    </div>
+    <div class="visual-box"><img src="assets/slides/vista-funcional.png" alt="Vista Funcional" onclick="zoom(this)" /><div class="caption">Vista Funcional · Clic para ampliar</div></div>
+    <div class="visual-box"><img src="assets/slides/vista-concurrencia.png" alt="Vista de Concurrencia" onclick="zoom(this)" /><div class="caption">Vista de Concurrencia · 3 receptores, 2 despachadores, 24 pipelines independientes</div></div>
   </section>
 
-  <!-- SLIDE 3: CONTENEDORES -->
+  <!-- SLIDE 3 -->
   <section class="slide">
     <h1>Vista de Contenedores y Aislamiento de Zonas</h1>
     <p class="subtitle">Ninguna falla o cierre de mes en LSA Plus puede impactar a la Central de Emergencias</p>
-    <div class="visual-box">
-      <img src="assets/09_anim_aislamiento_zonas.svg" alt="Animación de Aislamiento" onclick="zoom(this)" />
-    </div>
-    <div class="visual-box">
-      <img src="assets/slides/vista-contenedores.png" alt="Vista de Contenedores" onclick="zoom(this)" />
-      <div class="caption">Solo 2 conexiones asíncronas entre Zona Crítica y Zona de Clientes</div>
-    </div>
+    <div class="visual-box"><img src="assets/09_anim_aislamiento_zonas.svg" alt="Animación de Aislamiento" onclick="zoom(this)" /></div>
+    <div class="visual-box"><img src="assets/slides/vista-contenedores.png" alt="Vista de Contenedores" onclick="zoom(this)" /><div class="caption">Solo 2 conexiones asíncronas entre Zona Crítica y Zona de Clientes</div></div>
   </section>
 
-  <!-- SLIDE 4: DESPLIEGUE -->
+  <!-- SLIDE 4 -->
   <section class="slide">
     <h1>Topología de Despliegue: Multi-AZ y Multi-Región Activa</h1>
     <p class="subtitle">2 Zonas de Disponibilidad en Bogotá + Failover Activo Colombia / Ecuador / Perú (Anycast DNS · PACELC)</p>
-    <div class="visual-box">
-      <img src="assets/slides/vista-despliegue-bogota.png" alt="Despliegue Bogotá 2 AZ" onclick="zoom(this)" />
-      <div class="caption">Nivel 1: Región Bogotá (Zona A y Zona B con réplica sincrónica y clúster de 3 nodos de colas)</div>
-    </div>
-    <div class="visual-box">
-      <img src="assets/slides/topologia-multiregion.png" alt="Topología Multi-Región" onclick="zoom(this)" />
-      <div class="caption">Nivel 2: Multi-Región Activa (Colombia primaria · Ecuador y Perú failover)</div>
-    </div>
+    <div class="visual-box"><img src="assets/slides/vista-despliegue-bogota.png" alt="Despliegue Bogotá 2 AZ" onclick="zoom(this)" /><div class="caption">Nivel 1: Región Bogotá (Zona A y Zona B con réplica sincrónica y clúster de 3 nodos de colas)</div></div>
+    <div class="visual-box"><img src="assets/slides/topologia-multiregion.png" alt="Topología Multi-Región" onclick="zoom(this)" /><div class="caption">Nivel 2: Multi-Región Activa (Colombia primaria · Ecuador y Perú failover)</div></div>
   </section>
 
-  <!-- SLIDE 5: SIMULADOR EXP-1 -->
+  <!-- SLIDE 5: CHAOS SIMULATOR EN VIVO (EXP-1 / 1b / 1c) -->
   <section class="slide">
-    <h1>Simulador Interactivo de Fallas (EXP-1, EXP-1b y EXP-1c)</h1>
-    <p class="subtitle">Explora en vivo el impacto de matar nodos con SIGKILL y ajustar la sesión de 6 s a 2 s</p>
+    <h1>🔥 Simulador Interactivo de Fallas (EXP-1, EXP-1b y EXP-1c)</h1>
+    <p class="subtitle">Inyecta un <b>SIGKILL</b> en vivo y compara cómo responde la arquitectura con réplicas vs. la línea base</p>
+
     <div class="sim-panel">
-      <div class="sim-title">⚡ Selecciona el escenario experimental real:</div>
-      <div class="toggle-group">
-        <button class="pill active" onclick="setExp1('1b_tactica', this)">✅ EXP-1b: Nodo Perdido (Con Táctica)</button>
-        <button class="pill danger" onclick="setExp1('1b_base', this)">❌ EXP-1b: Nodo Perdido (Línea Base)</button>
-        <button class="pill" onclick="setExp1('1_6s', this)">⏱️ EXP-1: Sesión 6 s (Latido 1 s)</button>
-        <button class="pill" onclick="setExp1('1c_2s', this)">🚀 EXP-1c: Sesión 2 s (Latido 0,5 s)</button>
+      <div class="sim-title">
+        <span>⚡ Control de Caos en Vivo (flujo de pánicos en tiempo real)</span>
+        <span id="chaos-status" style="font-size:12px;color:#4ade80;">● Sistema saludable</span>
       </div>
-      <div class="kpi-grid" id="exp1-kpis"></div>
+      <div class="toggle-group">
+        <button class="pill active" id="btn-mode-tac" onclick="setChaosMode('tactica')">✅ Arquitectura Con Táctica (RF=3 · ×2)</button>
+        <button class="pill danger" id="btn-mode-base" onclick="setChaosMode('base')">❌ Línea Base (Sin réplicas)</button>
+        <button class="pill danger" onclick="killNode()">🔥 Inyectar SIGKILL (Matar Nodo)</button>
+        <button class="pill" onclick="resetChaos()">🔄 Restaurar</button>
+      </div>
+      <canvas id="chaosCanvas" width="900" height="220"></canvas>
+      <div class="kpi-grid" style="margin-top:12px;margin-bottom:0;">
+        <div class="kpi"><div class="label">Pánicos Emitidos</div><div class="val blue" id="c-sent">0</div></div>
+        <div class="kpi"><div class="label">Guardados en BD</div><div class="val green" id="c-saved">0</div></div>
+        <div class="kpi"><div class="label">Pánicos Perdidos</div><div class="val red" id="c-lost">0</div></div>
+        <div class="kpi"><div class="label">p99 Real Medido</div><div class="val green" id="c-lat">1,08 s</div></div>
+      </div>
     </div>
-    <div class="visual-box">
-      <img src="assets/07_failover_animado_exp1b.svg" alt="Failover Animado" onclick="zoom(this)" />
+
+    <div class="sim-panel" style="border-color:var(--border);">
+      <div class="sim-title" style="color:var(--blue);">📊 Comparativa Animada de Resultados Reales (EXP-1b · 58.000 pánicos/escenario)</div>
+      <div class="bar-chart" id="exp1-bars">
+        <div class="bar-row"><span>Táctica · Nodo Despachador</span><div class="bar-track"><div class="bar-fill teal" data-w="100%" style="width:0">100 %</div></div><span>0 perdidos</span></div>
+        <div class="bar-row"><span>Base · Nodo Despachador</span><div class="bar-track"><div class="bar-fill red" data-w="38%" style="width:0">38,0 %</div></div><span style="color:#f87171;">35.697 perd.</span></div>
+        <div class="bar-row"><span>Táctica · Nodo Broker</span><div class="bar-track"><div class="bar-fill teal" data-w="100%" style="width:0">100 %</div></div><span>0 perdidos</span></div>
+        <div class="bar-row"><span>Base · Nodo Broker</span><div class="bar-track"><div class="bar-fill red" data-w="38.8%" style="width:0">38,8 %</div></div><span style="color:#f87171;">35.494 perd.</span></div>
+      </div>
     </div>
-    <div class="visual-box dark">
-      <img src="assets/10_anim_sesion_2s_exp1c.svg" alt="Carrera de Sesión 6s vs 2s" onclick="zoom(this)" />
-    </div>
+
+    <div class="visual-box dark"><img src="assets/10_anim_sesion_2s_exp1c.svg" alt="Carrera Sesión 6s vs 2s" onclick="zoom(this)" /></div>
   </section>
 
-  <!-- SLIDE 6: SIMULADOR PICOS EXP-2/3 -->
+  <!-- SLIDE 6: CARRERA BACKLOG ANIMADA (EXP-2 / EXP-3) -->
   <section class="slide">
-    <h1>Picos de 5.000 señales/s: 1 Cola vs. 24 Colas (EXP-2 y EXP-3)</h1>
-    <p class="subtitle">Guardar no es el cuello de botella; las 24 colas se justifican por el procesamiento en tiempo real</p>
-    <div class="visual-box dark">
-      <img src="assets/08_anim_colas_vs_unica_exp3.svg" alt="Animación 1 Cola vs 24 Colas" onclick="zoom(this)" />
-    </div>
-    <div class="visual-box">
-      <img src="assets/04_backlog_pico_exp3.svg" alt="Evolución del Backlog" onclick="zoom(this)" />
-      <div class="caption">Evolución real del backlog (timeline.csv · EXP-3 Rep. 1)</div>
-    </div>
-  </section>
+    <h1>▶️ Carrera en Vivo del Backlog en Pico de 5.000/s (EXP-2 y EXP-3)</h1>
+    <p class="subtitle">Pulsa reproducir para ver cómo la cola única acumula 2,05 millones mientras las 24 colas procesan en 0,75 s</p>
 
-  <!-- SLIDE 7: CALCULADORA ESC-2 / EXP-4 -->
-  <section class="slide">
-    <h1>Calculadora de Escalabilidad (18.000 → 40.000 Camiones · EXP-4)</h1>
-    <p class="subtitle">Mueve el deslizador para proyectar carga y holgura de las 24 particiones medidas en el prototipo</p>
     <div class="sim-panel">
-      <div class="sim-title">🚛 Tamaño de Flota Proyectada: <span id="fleet-val" style="color:#fff;">40.000</span> camiones</div>
-      <input type="range" min="18000" max="45000" step="1000" value="40000" oninput="calcScale(this.value)" />
-      <div class="kpi-grid" id="scale-kpis"></div>
+      <div class="sim-title">
+        <span>📈 Evolución Real del Backlog (t = 0 s → 600 s · Ventana de pico 30 s – 330 s)</span>
+        <button class="pill active" onclick="startBacklogAnim()">▶️ Reproducir Pico en Vivo</button>
+      </div>
+      <canvas id="backlogCanvas" width="900" height="270"></canvas>
+      <div class="kpi-grid" style="margin-top:12px;margin-bottom:0;">
+        <div class="kpi"><div class="label">Tiempo Simulado</div><div class="val blue" id="b-time">0 s</div></div>
+        <div class="kpi"><div class="label">Backlog Táctica (24 colas)</div><div class="val green" id="b-tac">0</div><div class="sub">p99 = 0,749 s · Normaliza ≤ 1,4 s</div></div>
+        <div class="kpi"><div class="label">Backlog Base (1 cola)</div><div class="val red" id="b-base">0</div><div class="sub">p99 &gt; 832,8 s · Nunca normaliza</div></div>
+      </div>
     </div>
-    <div class="visual-box">
-      <img src="assets/05_distribucion_24_particiones.svg" alt="Distribución 24 Particiones" onclick="zoom(this)" />
-      <div class="caption">Distribución real medida con hash FNV-1a(truck_id) mod 24 (desviación máxima ~3 % vs meta ±10 %)</div>
-    </div>
-    <div class="visual-box">
-      <img src="assets/06_mapa_calor_recursos.svg" alt="Recursos CPU y RAM" onclick="zoom(this)" />
-    </div>
+
+    <div class="visual-box dark"><img src="assets/08_anim_colas_vs_unica_exp3.svg" alt="1 Cola vs 24 Colas" onclick="zoom(this)" /></div>
   </section>
 
-  <!-- SLIDE 8: APRENDIZAJES Y ROADMAP -->
+  <!-- SLIDE 7: ESCALABILIDAD 40K Y 24 PARTICIONES INTERACTIVAS -->
+  <section class="slide">
+    <h1>⚖️ Calculadora de Escalado (40.000 Camiones) y 24 Particiones</h1>
+    <p class="subtitle">Explora las 24 colas reales medidas (pasa el mouse sobre cada barra) y proyecta el crecimiento de flota</p>
+
+    <div class="sim-panel">
+      <div class="sim-title">🚛 Flota Proyectada: <span id="fleet-val" style="color:#fff;font-size:18px;">40.000</span> camiones</div>
+      <input type="range" min="18000" max="45000" step="1000" value="40000" oninput="calcScale(this.value)" />
+      <div class="kpi-grid" id="scale-kpis" style="margin-bottom:0;"></div>
+    </div>
+
+    <div class="sim-panel" style="border-color:var(--border);">
+      <div class="sim-title" style="color:var(--blue);">📊 Distribución Real en las 24 Particiones · Hash FNV-1a(truck_id) (Pasa el cursor)</div>
+      <div class="part-grid" id="part-grid"></div>
+      <div id="part-tooltip">Pasa el mouse sobre cualquier partición (P0–P23) para ver el conteo exacto de señales y desviación.</div>
+    </div>
+
+    <div class="visual-box"><img src="assets/06_mapa_calor_recursos.svg" alt="Recursos CPU y RAM" onclick="zoom(this)" /></div>
+  </section>
+
+  <!-- SLIDE 8: APRENDIZAJES -->
   <section class="slide">
     <h1>Aprendizajes, Transparencia y Roadmap</h1>
-    <p class="subtitle">7 hallazgos reales en 75 corridas y siguientes pasos hacia producción en AWS</p>
+    <p class="subtitle">7 correcciones reales en 75 corridas y siguientes pasos hacia producción en AWS</p>
     <div class="kpi-grid">
       <div class="kpi"><div class="label">Durabilidad Real</div><div class="val green">fsync ON</div><div class="sub">Desactivamos bypass de fsync y rebalanceo de líderes en Redpanda</div></div>
       <div class="kpi"><div class="label">Meta &lt; 2 s</div><div class="val blue">Configuración</div><div class="sub">No requiere cambiar arquitectura: sesión 2 s + latido 0,5 s</div></div>
       <div class="kpi"><div class="label">Próximo Paso</div><div class="val amber">AWS EC2</div><div class="sub">Desplegar el mismo compose en múltiples EC2 Multi-AZ</div></div>
     </div>
     <table>
-      <thead><tr><th>Conclusión Validada</th><th>Evidencia</th></tr></thead>
+      <thead><tr><th>Hallazgo / Conclusión Validada</th><th>Evidencia Directa</th></tr></thead>
       <tbody>
         <tr><td><b>Cero pérdida de pánicos (DIS-1)</b></td><td>100 % guardados incluso perdiendo un nodo completo con su disco (vs. 38 % en línea base).</td></tr>
         <tr><td><b>24 colas justificadas por LAT-2</b></td><td>p99 = 0,75 s y normalización en ≤ 1,4 s frente a &gt; 833 s y 2,05 M de backlog con 1 cola.</td></tr>
+        <tr><td><b>Caso borde documentado</b></td><td>Error producer_state en Redpanda perdió 2 (EXP-1) y 4 (EXP-1b) telemetrías acusadas (0 pánicos afectados).</td></tr>
         <tr><td><b>Transparencia experimental</b></td><td>Ejecutado en 1 equipo (Apple M5); cifras absolutas indicativas, comparación controlada concluyente.</td></tr>
       </tbody>
     </table>
-    <p style="margin-top:16px;font-size:13.5px;color:#94a3b8;">
-      Ver también: <a href="evidencia/informe-experimental.html" style="color:#38bdf8;">Informe HTML completo</a> ·
+    <p style="margin-top:14px;font-size:13.5px;color:#94a3b8;">
+      Evidencia directa: <a href="evidencia/informe-experimental.html" style="color:#38bdf8;">Informe HTML completo</a> ·
       <a href="evidencia/docker-compose.yml" style="color:#38bdf8;">docker-compose.yml</a> ·
       <a href="README.md" style="color:#38bdf8;">README del repositorio</a>
     </p>
   </section>
 
+  <!-- SLIDE 9: PREGUNTAS DEL JURADO -->
+  <section class="slide">
+    <h1>🎤 Modo Preguntas del Jurado (Defensa Técnica)</h1>
+    <p class="subtitle">Respuestas directas respaldadas por las 75 corridas experimentales</p>
+
+    <details class="faq" open>
+      <summary>1. ¿Por qué fijar 24 colas y no 12 o 48?</summary>
+      <p>Con un costo real de evaluación de <code>2 ms/señal</code>, un worker procesa ~480 señales/s. 12 colas (~5.760/s) quedarían al límite del pico actual de 5.000/s y colapsarían al crecer. <b>24 colas ofrecen ~11.500 señales/s</b>, absorbiendo hoy los 5.000/s en 0,75 s y dejando capacidad lista para la proyección de 40.000 camiones (≈ 11.000/s) sin rediseñar particiones en producción.</p>
+    </details>
+    <details class="faq">
+      <summary>2. ¿Por qué EXP-2 no discriminó entre 1 cola y 24 colas?</summary>
+      <p>Porque <b>guardar</b> no es el cuello de botella frente a la meta de 1 minuto (1 cola incluso escribe lotes COPY más grandes en 0,03 s vs 0,345 s). El colapso de la cola única ocurre al <b>procesar reglas</b> (EXP-3: &gt; 833 s y 2,05 M de backlog), lo que demuestra que las 24 colas se justifican por LAT-2 y ESC-2.</p>
+    </details>
+    <details class="faq">
+      <summary>3. ¿Cómo demostraron que no hubo "auto-reporte" maquillado?</summary>
+      <p>El verificador (<code>analyze.py</code>) ignora las métricas internas de los servicios y cruza por clave <code>(truck_id, seq)</code> el log del generador (<code>gen.csv.gz</code>) contra las tablas de PostgreSQL, creadas <b>sin índices ni unicidad</b> a propósito para poder detectar pérdidas acusadas y contar duplicados reales.</p>
+    </details>
+    <details class="faq">
+      <summary>4. ¿Por qué tuvieron que crear EXP-1b y EXP-1c después de EXP-1?</summary>
+      <p>En EXP-1 descubrimos dos cosas honestas: primero, Docker relanzaba contenedores caídos en ~1 s con su disco intacto (un reinicio, no la pérdida de una máquina), por eso creamos <b>EXP-1b</b> sin relanzar donde la base perdió ~61 %. Segundo, el p99 del pánico era 4,73 s por la sesión de 6 s del grupo de consumo; en <b>EXP-1c</b> la bajamos a 2 s (latido 0,5 s) logrando <b>1,08 s</b> sin cambiar la arquitectura.</p>
+    </details>
+    <details class="faq">
+      <summary>5. ¿Qué pasa si cae toda la región de Colombia o si LSA Plus colapsa en cierre de mes?</summary>
+      <p>Si cae LSA Plus, la Central de Emergencias no lo percibe porque solo existen 2 flujos asíncronos (sin llamadas síncronas desde la zona crítica). Si cae toda la región Colombia, <b>Anycast DNS</b> redirige automáticamente las OBU hacia las réplicas activas en Ecuador y Perú.</p>
+    </details>
+  </section>
+
   <div class="footer-nav">
     <button class="btn-step" onclick="step(-1)">⬅️ Anterior</button>
-    <span id="page-indicator" style="color:#94a3b8;font-size:13px;align-self:center;">1 / 9</span>
+    <span id="page-indicator" style="color:#94a3b8;font-size:13px;align-self:center;">1 / 10</span>
     <button class="btn-step" onclick="step(1)">Siguiente ➡️</button>
   </div>
 </main>
@@ -345,6 +366,9 @@
     btns.forEach((b, i) => b.classList.toggle('active', i === cur));
     document.getElementById('page-indicator').textContent = `${cur + 1} / ${slides.length}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (cur === 5) animateExp1Bars();
+    if (cur === 6) startBacklogAnim();
+    if (cur === 7) renderPartitions();
   }
   function step(d) { go(cur + d); }
   document.addEventListener('keydown', e => {
@@ -357,38 +381,206 @@
     document.getElementById('lightbox').style.display = 'flex';
   }
 
-  const exp1Data = {
-    '1b_tactica': [
-      { l: 'Pánicos Guardados', v: '100 %', c: 'green', s: '58.000 / 58.000 (0 perdidos)' },
-      { l: 'Pérdida de Nodo', v: 'Sobrevive', c: 'green', s: 'Despachador o Broker caído sin relanzar' },
-      { l: 'Criterio DIS-1', v: 'CUMPLE', c: 'green', s: 'Réplicas RF=3 + acuse tras replicar' }
-    ],
-    '1b_base': [
-      { l: 'Pánicos Guardados', v: '38,0 %', c: 'red', s: '~35.600 pánicos perdidos (~61 %)' },
-      { l: 'Telemetría Perdida', v: '2,27 M', c: 'red', s: 'Al perder broker único sin réplicas' },
-      { l: 'Criterio DIS-1', v: 'NO CUMPLE', c: 'red', s: 'Auto-commit + sin redundancia' }
-    ],
-    '1_6s': [
-      { l: 'p99 Pánico en Falla', v: '4,73 s', c: 'amber', s: 'Por encima de la meta de 2,0 s' },
-      { l: 'Pánicos Perdidos', v: '0', c: 'green', s: '174.000 / 174.000 guardados' },
-      { l: 'Causa Raíz', v: 'Sesión 6 s', c: 'amber', s: 'Espera 6 s sin latido antes de reasignar' }
-    ],
-    '1c_2s': [
-      { l: 'p99 Pánico en Falla', v: '1,08 s', c: 'green', s: 'Cumple meta < 2,0 s (p99.9 = 1,93 s)' },
-      { l: 'Detección Caída', v: '0,37 s', c: 'blue', s: 'Sesión 2 s · Latido 0,5 s' },
-      { l: 'Pánicos Perdidos', v: '0', c: 'green', s: 'Sin cambiar la arquitectura' }
-    ]
-  };
+  function animateExp1Bars() {
+    document.querySelectorAll('#exp1-bars .bar-fill').forEach(el => {
+      el.style.width = '0%';
+      setTimeout(() => { el.style.width = el.dataset.w; }, 80);
+    });
+  }
 
-  function setExp1(key, el) {
-    if (el) {
-      el.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
+  // --- LIVE CHAOS SIMULATOR (SLIDE 5) ---
+  let chaosMode = 'tactica';
+  let nodeDead = false;
+  let cSent = 0, cSaved = 0, cLost = 0;
+  const packets = [];
+  const cCanvas = document.getElementById('chaosCanvas');
+  const cCtx = cCanvas.getContext('2d');
+
+  function setChaosMode(m) {
+    chaosMode = m;
+    document.getElementById('btn-mode-tac').classList.toggle('active', m === 'tactica');
+    document.getElementById('btn-mode-base').classList.toggle('active', m === 'base');
+    resetChaos();
+  }
+  function killNode() {
+    nodeDead = true;
+    document.getElementById('chaos-status').innerHTML = chaosMode === 'tactica'
+      ? '<span style="color:#fbbf24;">⚠️ SIGKILL en Nodo 1 → Failover automático a Réplica 2 (0 pérdidas)</span>'
+      : '<span style="color:#ef4444;">🔥 SIGKILL en Nodo Único → ¡PÉRDIDA MASIVA DE PÁNICOS!</span>';
+    document.getElementById('c-lat').textContent = chaosMode === 'tactica' ? '1,08 s' : 'PERDIDOS';
+    document.getElementById('c-lat').className = 'val ' + (chaosMode === 'tactica' ? 'green' : 'red');
+  }
+  function resetChaos() {
+    nodeDead = false; cSent = 0; cSaved = 0; cLost = 0; packets.length = 0;
+    document.getElementById('chaos-status').innerHTML = '<span style="color:#4ade80;">● Sistema saludable</span>';
+    document.getElementById('c-lat').textContent = chaosMode === 'tactica' ? '0,35 s' : '0,28 s';
+    document.getElementById('c-lat').className = 'val green';
+    updateChaosKPIs();
+  }
+  function updateChaosKPIs() {
+    document.getElementById('c-sent').textContent = cSent;
+    document.getElementById('c-saved').textContent = cSaved;
+    document.getElementById('c-lost').textContent = cLost;
+  }
+
+  setInterval(() => {
+    if (cur !== 5) return;
+    cSent++;
+    const route = (chaosMode === 'tactica' && nodeDead) ? 1 : (chaosMode === 'tactica' ? (cSent % 2) : 0);
+    packets.push({ x: 145, y: 110, route, lost: (chaosMode === 'base' && nodeDead), done: false });
+    updateChaosKPIs();
+  }, 360);
+
+  function drawChaos() {
+    if (cur === 5) {
+      cCtx.clearRect(0, 0, 900, 220);
+      // Draw boxes
+      const box = (x, y, w, h, title, sub, stroke, fill) => {
+        cCtx.fillStyle = fill; cCtx.strokeStyle = stroke; cCtx.lineWidth = 2;
+        cCtx.beginPath(); cCtx.roundRect(x, y, w, h, 8); cCtx.fill(); cCtx.stroke();
+        cCtx.fillStyle = '#f8fafc'; cCtx.font = 'bold 13px system-ui'; cCtx.textAlign = 'center';
+        cCtx.fillText(title, x + w/2, y + 26);
+        cCtx.fillStyle = '#cbd5e1'; cCtx.font = '11px system-ui';
+        cCtx.fillText(sub, x + w/2, y + 44);
+      };
+      box(25, 80, 120, 60, '🚨 OBU Pánico', 'Ráfaga 400/5s', '#f97316', '#1e293b');
+      box(220, 80, 130, 60, 'HAProxy + Rec.', chaosMode==='tactica'?'3 activos':'1 activo', '#a855f7', '#1e293b');
+
+      // Node 1
+      box(430, 28, 175, 62, nodeDead ? '💀 Nodo 1 CAÍDO' : 'Despachador 1', nodeDead ? 'SIGKILL (sin disco)' : (chaosMode==='tactica'?'RF=3 · acks=all':'Sin réplicas'), nodeDead ? '#ef4444' : '#38bdf8', nodeDead ? '#450a0a' : '#1e293b');
+      // Node 2 (only in tactica)
+      if (chaosMode === 'tactica') {
+        box(430, 126, 175, 62, '✅ Réplica 2 ACTIVA', nodeDead ? 'Asume 100 % tráfico' : 'En grupo (sesión 2s)', '#22c55e', '#064e3b');
+      } else {
+        box(430, 126, 175, 62, 'Sin Réplica', '(Línea Base)', '#475569', '#0f172a');
+      }
+      box(710, 80, 160, 60, '🗄️ PostgreSQL', 'BD Casos Pánico', '#14b8a6', '#1e293b');
+
+      // Lines
+      cCtx.strokeStyle = '#475569'; cCtx.lineWidth = 2;
+      cCtx.beginPath(); cCtx.moveTo(145, 110); cCtx.lineTo(220, 110); cCtx.stroke();
+      cCtx.beginPath(); cCtx.moveTo(350, 110); cCtx.lineTo(430, 59); cCtx.stroke();
+      if (chaosMode === 'tactica') { cCtx.beginPath(); cCtx.moveTo(350, 110); cCtx.lineTo(430, 157); cCtx.stroke(); }
+      cCtx.beginPath(); cCtx.moveTo(605, 59); cCtx.lineTo(710, 110); cCtx.stroke();
+      if (chaosMode === 'tactica') { cCtx.beginPath(); cCtx.moveTo(605, 157); cCtx.lineTo(710, 110); cCtx.stroke(); }
+
+      // Packets
+      for (let i = packets.length - 1; i >= 0; i--) {
+        const p = packets[i];
+        p.x += 5.5;
+        if (p.x > 350 && p.x < 430) {
+          const targetY = p.route === 0 ? 59 : 157;
+          p.y += (targetY - p.y) * 0.18;
+        } else if (p.x >= 430 && p.x <= 605) {
+          p.y = p.route === 0 ? 59 : 157;
+          if (p.lost && p.x > 500) {
+            cLost++; updateChaosKPIs(); packets.splice(i, 1); continue;
+          }
+        } else if (p.x > 605) {
+          p.y += (110 - p.y) * 0.18;
+        }
+        cCtx.fillStyle = p.lost ? '#ef4444' : '#22c55e';
+        cCtx.beginPath(); cCtx.arc(p.x, p.y, 5.5, 0, Math.PI * 2); cCtx.fill();
+        if (p.x >= 710) { cSaved++; updateChaosKPIs(); packets.splice(i, 1); }
+      }
     }
-    const box = document.getElementById('exp1-kpis');
-    box.innerHTML = exp1Data[key].map(x =>
-      `<div class="kpi"><div class="label">${x.l}</div><div class="val ${x.c}">${x.v}</div><div class="sub">${x.s}</div></div>`
-    ).join('');
+    requestAnimationFrame(drawChaos);
+  }
+  requestAnimationFrame(drawChaos);
+
+  // --- ANIMATED BACKLOG RACE (SLIDE 6) ---
+  let blFrame = 0, blTimer = null;
+  const bCanvas = document.getElementById('backlogCanvas');
+  const bCtx = bCanvas.getContext('2d');
+
+  // Representative real curve points (t_s, base_k, tactica_k) from EXP-3
+  const blCurve = [];
+  for (let t = 0; t <= 600; t += 10) {
+    let baseK = 0, tacK = 0.4;
+    if (t < 30) { baseK = t * 1.1; tacK = 0.5; }
+    else if (t <= 330) { baseK = 33 + (t - 30) * 4.52; tacK = 1.2 + Math.sin(t/25)*0.4; }
+    else { baseK = Math.min(2050, 1389 + (t - 330) * 2.45); tacK = Math.max(0.2, 1.2 - (t - 330)*0.08); }
+    blCurve.push({ t, baseK, tacK });
+  }
+
+  function startBacklogAnim() {
+    if (blTimer) clearInterval(blTimer);
+    blFrame = 1;
+    blTimer = setInterval(() => {
+      drawBacklog(blFrame);
+      const pt = blCurve[Math.min(blFrame, blCurve.length - 1)];
+      document.getElementById('b-time').textContent = `${pt.t} s`;
+      document.getElementById('b-tac').textContent = `${Math.round(pt.tacK * 1000).toLocaleString('es-CO')}`;
+      document.getElementById('b-base').textContent = `${(pt.baseK / 1000).toFixed(2)} M`;
+      blFrame++;
+      if (blFrame >= blCurve.length) clearInterval(blTimer);
+    }, 55);
+  }
+
+  function drawBacklog(limit) {
+    const w = 900, h = 270, px0 = 65, py0 = 24, pw = 805, ph = 205;
+    bCtx.clearRect(0, 0, w, h);
+    // Peak highlight
+    const x1 = px0 + (30/600)*pw, x2 = px0 + (330/600)*pw;
+    bCtx.fillStyle = 'rgba(245, 158, 11, 0.14)';
+    bCtx.fillRect(x1, py0, x2 - x1, ph);
+    bCtx.fillStyle = '#fbbf24'; bCtx.font = 'bold 11px system-ui'; bCtx.textAlign = 'center';
+    bCtx.fillText('VENTANA DE PICO: 5.000 señales/s (30 s – 330 s)', (x1+x2)/2, py0 + 15);
+
+    // Grid
+    bCtx.strokeStyle = '#1e293b'; bCtx.lineWidth = 1;
+    [0, 500, 1000, 1500, 2000].forEach(v => {
+      const y = py0 + ph - (v/2200)*ph;
+      bCtx.beginPath(); bCtx.moveTo(px0, y); bCtx.lineTo(px0+pw, y); bCtx.stroke();
+      bCtx.fillStyle = '#94a3b8'; bCtx.font = '11px system-ui'; bCtx.textAlign = 'right';
+      bCtx.fillText(v === 0 ? '0' : (v >= 1000 ? (v/1000).toFixed(1)+'M' : v+'k'), px0 - 8, y + 4);
+    });
+
+    // Base line (red)
+    bCtx.strokeStyle = '#ef4444'; bCtx.lineWidth = 3; bCtx.beginPath();
+    for (let i = 0; i <= Math.min(limit, blCurve.length-1); i++) {
+      const x = px0 + (blCurve[i].t/600)*pw;
+      const y = py0 + ph - (blCurve[i].baseK/2200)*ph;
+      if (i === 0) bCtx.moveTo(x, y); else bCtx.lineTo(x, y);
+    }
+    bCtx.stroke();
+
+    // Tactica line (teal)
+    bCtx.strokeStyle = '#14b8a6'; bCtx.lineWidth = 3; bCtx.beginPath();
+    for (let i = 0; i <= Math.min(limit, blCurve.length-1); i++) {
+      const x = px0 + (blCurve[i].t/600)*pw;
+      const y = py0 + ph - (blCurve[i].tacK/2200)*ph;
+      if (i === 0) bCtx.moveTo(x, y); else bCtx.lineTo(x, y);
+    }
+    bCtx.stroke();
+
+    // X labels
+    bCtx.fillStyle = '#94a3b8'; bCtx.textAlign = 'center';
+    [0, 100, 200, 300, 400, 500, 600].forEach(t => {
+      bCtx.fillText(t + ' s', px0 + (t/600)*pw, py0 + ph + 20);
+    });
+  }
+
+  // --- 24 PARTITIONS INTERACTIVE CHART (SLIDE 7) ---
+  const partCounts = [31600,31281,30215,31039,30673,31860,31093,30964,31138,31289,31691,31566,32138,30247,31259,30673,30945,31136,31852,31028,31135,31623,31368,32183];
+  const partMean = partCounts.reduce((a,b)=>a+b,0) / 24;
+
+  function renderPartitions() {
+    const grid = document.getElementById('part-grid');
+    const maxC = Math.max(...partCounts);
+    grid.innerHTML = partCounts.map((c, i) => {
+      const pct = Math.round((c / maxC) * 100);
+      const dev = (((c - partMean) / partMean) * 100).toFixed(1);
+      const sign = dev >= 0 ? '+' : '';
+      return `<div class="part-col" onmouseenter="showPart(${i},${c},'${sign}${dev}')">
+        <div class="part-bar" style="height:${pct}%"></div>
+        <div class="part-lbl">P${i}</div>
+      </div>`;
+    }).join('');
+  }
+  function showPart(i, c, dev) {
+    document.getElementById('part-tooltip').textContent =
+      `Partición P${i}: ${c.toLocaleString('es-CO')} señales · Desviación frente al promedio: ${dev} % (Meta: ±10 %)`;
   }
 
   function calcScale(trucks) {
@@ -396,8 +588,7 @@
     document.getElementById('fleet-val').textContent = trucks.toLocaleString('es-CO');
     const peak = Math.round(trucks * (5000 / 18000));
     const perQueue = Math.round(peak / 24);
-    const cap = 11520; // 24 workers * 480/s
-    const util = Math.round((peak / cap) * 100);
+    const util = Math.round((peak / 11520) * 100);
     const ok = util <= 100;
     document.getElementById('scale-kpis').innerHTML = `
       <div class="kpi"><div class="label">Pico Proyectado</div><div class="val blue">${peak.toLocaleString('es-CO')}/s</div><div class="sub">Escala lineal desde 5.000/s (18k)</div></div>
@@ -406,8 +597,8 @@
     `;
   }
 
-  setExp1('1b_tactica');
   calcScale(40000);
+  renderPartitions();
 </script>
 </body>
 </html>
