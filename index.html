@@ -153,7 +153,12 @@
   <button class="nav-btn" onclick="go(7)">8. ⚖️ Escala 40k y 24 Colas</button>
   <button class="nav-btn" onclick="go(8)">9. Aprendizajes y Roadmap</button>
   <button class="nav-btn" onclick="go(9)">10. 🎤 Preguntas del Jurado</button>
-  <div class="hint">Teclas <b>←</b> y <b>→</b> para avanzar · Clic en diagramas para zoom.</div>
+  <div class="hint">
+    <div style="margin-bottom:8px;font-weight:700;color:#e2e8f0;">🔗 Ver todo el proyecto:</div>
+    <a href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener" style="display:block;color:#38bdf8;text-decoration:none;margin-bottom:4px;">📁 Repo Documentación &amp; Web</a>
+    <a href="https://github.com/Feru34/Arquisoft-Reto4-Resultados" target="_blank" rel="noopener" style="display:block;color:#5eead4;text-decoration:none;margin-bottom:10px;">🧪 Repo Prototipo y 75 Corridas</a>
+    Teclas <b>←</b> y <b>→</b> para avanzar · Clic en diagramas para zoom.
+  </div>
 </aside>
 
 <main>
@@ -312,11 +317,15 @@
         <tr><td><b>Transparencia experimental</b></td><td>Ejecutado en 1 equipo (Apple M5); cifras absolutas indicativas, comparación controlada concluyente.</td></tr>
       </tbody>
     </table>
-    <p style="margin-top:14px;font-size:13.5px;color:#94a3b8;">
-      Evidencia directa: <a href="evidencia/informe-experimental.html" style="color:#38bdf8;">Informe HTML completo</a> ·
-      <a href="evidencia/docker-compose.yml" style="color:#38bdf8;">docker-compose.yml</a> ·
-      <a href="README.md" style="color:#38bdf8;">README del repositorio</a>
-    </p>
+    <div class="sim-panel" style="border-color:var(--blue);margin-top:16px;">
+      <div class="sim-title" style="color:var(--blue);">🔗 ¿Quieres ver todo el proyecto, código fuente y evidencia completa?</div>
+      <div class="toggle-group" style="margin-bottom:4px;">
+        <a class="pill active" href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener" style="text-decoration:none;">📁 Repo Arquitectura y Presentación</a>
+        <a class="pill" href="https://github.com/Feru34/Arquisoft-Reto4-Resultados" target="_blank" rel="noopener" style="text-decoration:none;border-color:var(--teal);color:#5eead4;">🧪 Repo Prototipo y 75 Corridas</a>
+        <a class="pill" href="evidencia/informe-experimental.html" style="text-decoration:none;">🌐 Informe HTML</a>
+        <a class="pill" href="evidencia/docker-compose.yml" style="text-decoration:none;">🐳 docker-compose.yml</a>
+      </div>
+    </div>
   </section>
 
   <!-- SLIDE 9: PREGUNTAS DEL JURADO -->
