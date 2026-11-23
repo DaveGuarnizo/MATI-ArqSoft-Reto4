@@ -23,8 +23,10 @@ tags:
 
 ![Arquitectura en Vivo LogiSur Andina](assets/00_hero_animado_lsa.svg)
 
-> [!tip] Presentación 100 % Interactiva (Web / GitHub Pages)
-> Abre **[`index.html`](index.html)** en tu navegador (o activa **GitHub Pages** en la raíz del repo) para presentar con **simuladores en vivo** (inyección de fallas `SIGKILL`, comparador `1` vs `24` colas, selector de sesión `6 s → 2 s`, calculadora de escalado `18k → 40k` camiones y visor con zoom de todos los diagramas).
+> [!tip] Presentación 100 % Interactiva y Repositorios del Proyecto
+> - **Presentación Web Interactiva**: Abre **[`index.html`](index.html)** (o visítala en GitHub Pages) para explorar los simuladores en vivo (`🔥 SIGKILL`, `▶️ Pico 5.000/s`, `⚖️ Escala 40k` y `🎤 Preguntas del Jurado`).
+> - **Repositorio de Documentación y Presentación**: [github.com/DaveGuarnizo/MATI-ArqSoft-Reto4](https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4)
+> - **Repositorio del Prototipo y Resultados Completos (75 corridas)**: [github.com/Feru34/Arquisoft-Reto4-Resultados](https://github.com/Feru34/Arquisoft-Reto4-Resultados)
 
 ---
 
@@ -46,22 +48,6 @@ tags:
 3. **Prototipo y Método** → [🐳 Stack y 12 Contenedores](03-Prototipo-y-Metodo/Arquitectura-del-Prototipo.md) · [🧪 Método y Verificación](03-Prototipo-y-Metodo/Metodo-y-Verificacion.md)
 4. **Evidencia Experimental** → [📈 Dashboard Visual](04-Experimentos/Dashboard-Resultados.md) · [🛡️ Disponibilidad](04-Experimentos/EXP-1-Disponibilidad-y-Fallas.md) · [🚀 Picos](04-Experimentos/EXP-2-y-EXP-3-Picos-de-Carga.md) · [⚖️ 24 Particiones](04-Experimentos/EXP-4-Reparto-y-Escalabilidad.md)
 5. **Aprendizajes y Cierre** → [🛠️ Bitácora](05-Aprendizajes/Bitacora-de-Hallazgos.md) · [🔭 Limitaciones y Roadmap](05-Aprendizajes/Limitaciones-y-Proximos-Pasos.md)
-
-<details>
-<summary>🚀 Cómo publicar este repositorio en GitHub con presentación interactiva (GitHub Pages)</summary>
-
-```bash
-git init
-git add .
-git commit -m "LogiSur Andina Reto 4: Arquitectura, validación experimental y presentación interactiva"
-git branch -M main
-git remote add origin <URL-DE-TU-REPO>
-git push -u origin main
-```
-
-Luego en GitHub: **Settings → Pages → Source: `Deploy from a branch` (`main` / `/root`)**. En 1 minuto tendrás la presentación interactiva pública en `https://<tu-usuario>.github.io/<tu-repo>/`.
-
-</details>
 
 ---
 
