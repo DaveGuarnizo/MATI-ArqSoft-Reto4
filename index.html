@@ -121,6 +121,16 @@
   #lightbox { display: none; position: fixed; inset: 0; background: rgba(2, 6, 23, 0.92); z-index: 999; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
   #lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 10px; background: #fff; padding: 6px; }
 
+  body.compact aside { display: none; }
+  body.compact main { max-width: 1420px; }
+  #btn-menu-toggle {
+    position: fixed; top: 14px; right: 18px; z-index: 50;
+    background: rgba(30, 41, 59, 0.92); border: 1px solid var(--border); color: #cbd5e1;
+    padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  #btn-menu-toggle:hover { border-color: var(--teal); color: #5eead4; }
+  details.asr-more { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 11px 15px; margin-top: 12px; }
+  details.asr-more summary { cursor: pointer; font-weight: 700; font-size: 13.5px; color: var(--blue); }
   @media (max-width: 860px) {
     body { flex-direction: column; }
     aside { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; }
@@ -160,6 +170,8 @@
   </div>
 </aside>
 
+<button id="btn-menu-toggle" onclick="toggleMenu()">Ocultar menú (M)</button>
+
 <main>
   <!-- SLIDE 0 -->
   <section class="slide active">
@@ -197,6 +209,20 @@
         <tr><td><b>ESC-2</b></td><td>La flota pasa de 18.000 a 40.000 camiones</td><td>≈ 11.000/s sin cambiar código</td><td>Fijar las 24 particiones desde el inicio y escalar nodos</td></tr>
       </tbody>
     </table>
+    <details class="asr-more">
+      <summary>Ver los otros 6 ASR (seguridad, reglas dinámicas y LSA Plus)</summary>
+      <table style="margin-top:10px;margin-bottom:4px;">
+        <thead><tr><th>ASR</th><th>Prioridad</th><th>Qué pide</th><th>Cómo lo resolvemos</th></tr></thead>
+        <tbody>
+          <tr><td><b>ESC-1</b></td><td>Alta</td><td>Pico 5.000/s en orden por vehículo y cola normal en ≤ 10 min</td><td>Se valida directamente dentro de EXP-2 y EXP-3</td></tr>
+          <tr><td><b>SEG-1</b></td><td>Alta</td><td>Falsa OBU intentando inyectar señales o pánico falso</td><td>Certificados mTLS por OBU y lista de bloqueo (&lt; 1 min)</td></tr>
+          <tr><td><b>DIS-4</b></td><td>Media</td><td>Temperatura evaluada con regla vieja</td><td>Verificación de versión en el motor de alertas y recálculo (&lt; 300 ms)</td></tr>
+          <tr><td><b>MOD-1</b></td><td>Media</td><td>Analista cambia una regla o umbral</td><td>Gestión de configuración versionada sin reiniciar (≤ 15 min)</td></tr>
+          <tr><td><b>INT-1</b></td><td>Media</td><td>Integración con canales externos y ERP</td><td>Despacho paralelo, proveedor alterno e idempotencia</td></tr>
+          <tr><td><b>LAT-3</b></td><td>Baja</td><td>Tablero anual en cierre de mes (p95 ≤ 3 s)</td><td>Proyector asíncrono con agregados (día/mes/año) y caché en LSA Plus</td></tr>
+        </tbody>
+      </table>
+    </details>
   </section>
 
   <!-- SLIDE 2 -->
@@ -380,9 +406,14 @@
     if (cur === 8) renderPartitions();
   }
   function step(d) { go(cur + d); }
+  function toggleMenu() {
+    const isCompact = document.body.classList.toggle('compact');
+    document.getElementById('btn-menu-toggle').textContent = isCompact ? 'Mostrar menú (M)' : 'Ocultar menú (M)';
+  }
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') step(1);
     if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'm' || e.key === 'M') toggleMenu();
     if (e.key === 'Escape') document.getElementById('lightbox').style.display = 'none';
   });
   function zoom(img) {
