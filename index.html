@@ -161,7 +161,6 @@
   <button class="nav-btn" onclick="go(6)">7. Carrera de Backlog (EXP-3)</button>
   <button class="nav-btn" onclick="go(7)">8. Escala 40k y 24 Colas</button>
   <button class="nav-btn" onclick="go(8)">9. Aprendizajes y Roadmap</button>
-  <button class="nav-btn" onclick="go(9)">10. Preguntas del Jurado</button>
   <div class="hint">
     <div style="margin-bottom:8px;font-weight:700;color:#e2e8f0;">Ver todo el proyecto</div>
     <a href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener" style="display:block;color:#38bdf8;text-decoration:none;margin-bottom:4px;">Repo Documentación y Web →</a>
@@ -337,36 +336,9 @@
     </div>
   </section>
 
-  <!-- SLIDE 9: PREGUNTAS DEL JURADO -->
-  <section class="slide">
-    <h1>🎤 Modo Preguntas del Jurado (Defensa Técnica)</h1>
-    <p class="subtitle">Respuestas directas respaldadas por las 75 corridas experimentales</p>
-
-    <details class="faq" open>
-      <summary>1. ¿Por qué fijar 24 colas y no 12 o 48?</summary>
-      <p>Con un costo real de evaluación de <code>2 ms/señal</code>, un worker procesa ~480 señales/s. 12 colas (~5.760/s) quedarían al límite del pico actual de 5.000/s y colapsarían al crecer. <b>24 colas ofrecen ~11.500 señales/s</b>, absorbiendo hoy los 5.000/s en 0,75 s y dejando capacidad lista para la proyección de 40.000 camiones (≈ 11.000/s) sin rediseñar particiones en producción.</p>
-    </details>
-    <details class="faq">
-      <summary>2. ¿Por qué EXP-2 no discriminó entre 1 cola y 24 colas?</summary>
-      <p>Porque <b>guardar</b> no es el cuello de botella frente a la meta de 1 minuto (1 cola incluso escribe lotes COPY más grandes en 0,03 s vs 0,345 s). El colapso de la cola única ocurre al <b>procesar reglas</b> (EXP-3: &gt; 833 s y 2,05 M de backlog), lo que demuestra que las 24 colas se justifican por LAT-2 y ESC-2.</p>
-    </details>
-    <details class="faq">
-      <summary>3. ¿Cómo demostraron que no hubo "auto-reporte" maquillado?</summary>
-      <p>El verificador (<code>analyze.py</code>) ignora las métricas internas de los servicios y cruza por clave <code>(truck_id, seq)</code> el log del generador (<code>gen.csv.gz</code>) contra las tablas de PostgreSQL, creadas <b>sin índices ni unicidad</b> a propósito para poder detectar pérdidas acusadas y contar duplicados reales.</p>
-    </details>
-    <details class="faq">
-      <summary>4. ¿Por qué tuvieron que crear EXP-1b y EXP-1c después de EXP-1?</summary>
-      <p>En EXP-1 descubrimos dos cosas honestas: primero, Docker relanzaba contenedores caídos en ~1 s con su disco intacto (un reinicio, no la pérdida de una máquina), por eso creamos <b>EXP-1b</b> sin relanzar donde la base perdió ~61 %. Segundo, el p99 del pánico era 4,73 s por la sesión de 6 s del grupo de consumo; en <b>EXP-1c</b> la bajamos a 2 s (latido 0,5 s) logrando <b>1,08 s</b> sin cambiar la arquitectura.</p>
-    </details>
-    <details class="faq">
-      <summary>5. ¿Qué pasa si cae toda la región de Colombia o si LSA Plus colapsa en cierre de mes?</summary>
-      <p>Si cae LSA Plus, la Central de Emergencias no lo percibe porque solo existen 2 flujos asíncronos (sin llamadas síncronas desde la zona crítica). Si cae toda la región Colombia, <b>Anycast DNS</b> redirige automáticamente las OBU hacia las réplicas activas en Ecuador y Perú.</p>
-    </details>
-  </section>
-
   <div class="footer-nav">
     <button class="btn-step" onclick="step(-1)">⬅️ Anterior</button>
-    <span id="page-indicator" style="color:#94a3b8;font-size:13px;align-self:center;">1 / 10</span>
+    <span id="page-indicator" style="color:#94a3b8;font-size:13px;align-self:center;">1 / 9</span>
     <button class="btn-step" onclick="step(1)">Siguiente ➡️</button>
   </div>
 </main>
