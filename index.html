@@ -348,7 +348,16 @@
       <div id="part-tooltip">Pasa el mouse sobre una partición (P0–P23) para ver cuántas señales recibió y su desviación frente al promedio.</div>
     </div>
 
-    <div class="visual-box"><img src="assets/06_mapa_calor_recursos.svg" alt="Uso de CPU y RAM" onclick="zoom(this)" /></div>
+    <div class="sim-panel" style="border-color:var(--border);">
+      <div class="sim-title" style="color:var(--blue);">
+        <span>Consumo real de recursos en pico de 5.000/s (docker stats · EXP-3)</span>
+        <div class="toggle-group" style="margin-bottom:0;">
+          <button class="pill active" id="btn-res-cpu" onclick="renderResources('cpu')">CPU media (%)</button>
+          <button class="pill" id="btn-res-mem" onclick="renderResources('mem')">Memoria máxima (MiB)</button>
+        </div>
+      </div>
+      <div class="bar-chart" id="res-bars"></div>
+    </div>
   </section>
 
   <!-- SLIDE 8: CONCLUSIONES -->
@@ -403,7 +412,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (cur === 6) animateExp1Bars();
     if (cur === 7) startBacklogAnim();
-    if (cur === 8) renderPartitions();
+    if (cur === 8) { renderPartitions(); renderResources(resMode); }
   }
   function step(d) { go(cur + d); }
   function toggleMenu() {
@@ -625,8 +634,45 @@
     `;
   }
 
+  // --- RECURSOS REALES ANIMADOS (SLIDE 9) ---
+  let resMode = 'cpu';
+  const resData = [
+    { name: 'procesador', cpu: 53.1, mem: 613 },
+    { name: 'postgres', cpu: 37.7, mem: 363 },
+    { name: 'redpanda-2', cpu: 33.7, mem: 897 },
+    { name: 'redpanda-1', cpu: 29.0, mem: 904 },
+    { name: 'redpanda-0', cpu: 28.7, mem: 898 },
+    { name: 'haproxy', cpu: 23.7, mem: 174 },
+    { name: 'receptor-1', cpu: 20.9, mem: 217 },
+    { name: 'receptor-2', cpu: 20.8, mem: 237 },
+    { name: 'receptor-3', cpu: 20.8, mem: 211 },
+    { name: 'despachador-2', cpu: 0.3, mem: 16 },
+    { name: 'despachador-1', cpu: 0.2, mem: 11 }
+  ];
+
+  function renderResources(mode) {
+    resMode = mode;
+    document.getElementById('btn-res-cpu').classList.toggle('active', mode === 'cpu');
+    document.getElementById('btn-res-mem').classList.toggle('active', mode === 'mem');
+    const sorted = [...resData].sort((a, b) => b[mode] - a[mode]);
+    const maxV = Math.max(...sorted.map(x => x[mode]));
+    const box = document.getElementById('res-bars');
+    box.innerHTML = sorted.map(r => {
+      const val = r[mode];
+      const pct = Math.max(2, Math.round((val / maxV) * 100));
+      const label = mode === 'cpu' ? `${val.toFixed(1)} %` : `${val} MiB`;
+      const cls = mode === 'cpu' ? 'teal' : 'blue';
+      const styleGrad = mode === 'mem' ? 'background:linear-gradient(90deg,#1d4ed8,#38bdf8);' : '';
+      return `<div class="bar-row"><span>${r.name}</span><div class="bar-track"><div class="bar-fill ${cls}" data-w="${pct}%" style="width:0;${styleGrad}"></div></div><span>${label}</span></div>`;
+    }).join('');
+    setTimeout(() => {
+      box.querySelectorAll('.bar-fill').forEach(el => { el.style.width = el.dataset.w; });
+    }, 40);
+  }
+
   calcScale(40000);
   renderPartitions();
+  renderResources('cpu');
 </script>
 </body>
 </html>
