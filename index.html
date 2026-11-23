@@ -255,7 +255,7 @@
     <p class="subtitle">En vez de quedarnos en diagramas, montamos un prototipo de 12 contenedores en Docker y comparamos nuestra propuesta contra una línea base sin las tácticas</p>
     <div class="kpi-grid">
       <div class="kpi"><div class="label">Montaje</div><div class="val blue">12 contenedores</div><div class="sub">Go, Redpanda (fsync real), HAProxy y PostgreSQL 16 en un solo compose</div></div>
-      <div class="kpi"><div class="label">Ejecuciones</div><div class="val green">75 corridas</div><div class="sub">Mínimo 5 repeticiones por escenario, limpiando todo antes de cada corrida</div></div>
+      <div class="kpi"><div class="label">Ejecuciones</div><div class="val green">75 corridas</div><div class="sub">78,9 millones de señales simuladas · 5 repeticiones por escenario desde cero</div></div>
       <div class="kpi"><div class="label">Verificación</div><div class="val amber">Cruce directo</div><div class="sub">Cruzamos lo que envió cada camión contra lo que quedó guardado en la BD</div></div>
     </div>
     <table>
@@ -266,7 +266,7 @@
         <tr><td><b>EXP-1c</b></td><td>DIS-1</td><td>Ajustar la sesión del grupo de consumo de 6 s a 2 s (latido 0,5 s) para bajar la latencia bajo falla</td><td>La misma arquitectura con la sesión original de 6 s (4,73 s)</td></tr>
         <tr><td><b>EXP-2</b></td><td>LAT-1</td><td>Pico de 5.000 señales/s por 5 min (con 2 % de señales atrasadas) midiendo tiempo hasta guardar</td><td>Una sola cola de telemetría para todos los camiones</td></tr>
         <tr><td><b>EXP-3</b></td><td>LAT-2 / ESC-1</td><td>El mismo pico de 5.000/s midiendo detección de anomalías (2 ms/señal), orden y vaciado de cola</td><td>Una sola cola y un solo worker procesando todo</td></tr>
-        <tr><td><b>EXP-4</b></td><td>ESC-2</td><td>Verificar que el hash de camionId envíe siempre cada camión a la misma cola y reparta parejo (±10 %)</td><td>Conteo real por partición en las 24 colas (desviación ~3 %)</td></tr>
+        <tr><td><b>Reparto (apoya EXP-4)</b></td><td>ESC-2</td><td>Verificado directamente sobre las 24 particiones de EXP-3: cada camión en la misma cola y reparto parejo</td><td>Conteo real por partición (desviación ~3 % vs meta ±10 %)</td></tr>
       </tbody>
     </table>
     <p style="font-size:13px;color:#94a3b8;margin-top:8px;">Las tablas de PostgreSQL se crearon sin índices ni restricciones de unicidad a propósito, para poder contar duplicados reales y no ocultar pérdidas.</p>
@@ -333,8 +333,8 @@
 
   <!-- SLIDE 7: ESCALABILIDAD 40K Y 24 PARTICIONES -->
   <section class="slide">
-    <h1>¿Alcanza para 40.000 camiones? (EXP-4 y ESC-2)</h1>
-    <p class="subtitle">Mueve el control para ver cuánta carga recibe cada una de las 24 colas y revisa el reparto real medido por partición</p>
+    <h1>¿Alcanza para 40.000 camiones? (Reparto en 24 colas · ESC-2)</h1>
+    <p class="subtitle">Con los datos reales de EXP-3 (~480 señales/s por worker y reparto parejo por hash), proyectamos el crecimiento a 40.000 camiones (adelanta EXP-4)</p>
 
     <div class="sim-panel">
       <div class="sim-title">Flota proyectada: <span id="fleet-val" style="color:#fff;font-size:18px;">40.000</span> camiones</div>
