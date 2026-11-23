@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LogiSur Andina (LSA) · Presentación Interactiva · Reto 4</title>
+<title>LogiSur Andina (LSA) · Propuesta de Arquitectura · Reto 4</title>
 <style>
   :root {
     --bg: #0b1120;
@@ -23,12 +23,12 @@
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.5;
+    line-height: 1.55;
     display: flex;
     min-height: 100vh;
   }
   aside {
-    width: 264px;
+    width: 268px;
     background: var(--panel);
     border-right: 1px solid var(--border);
     padding: 20px 16px;
@@ -40,8 +40,7 @@
     height: 100vh;
     overflow-y: auto;
   }
-  .brand { font-size: 16px; font-weight: 800; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
-  .brand span { display: block; font-size: 11px; color: var(--teal); font-weight: 600; margin-top: 2px; }
+  .brand { font-size: 16px; font-weight: 800; padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
   .nav-btn {
     background: transparent; border: 1px solid transparent; color: var(--muted);
     text-align: left; padding: 9px 12px; border-radius: 8px; cursor: pointer;
@@ -51,18 +50,18 @@
   .nav-btn.active { background: rgba(20, 184, 166, 0.16); border-color: var(--teal); color: #5eead4; }
   .hint { margin-top: auto; font-size: 11.5px; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--border); }
 
-  main { flex: 1; padding: 26px 36px; max-width: 1240px; margin: 0 auto; width: 100%; }
+  main { flex: 1; padding: 28px 38px; max-width: 1220px; margin: 0 auto; width: 100%; }
   .slide { display: none; animation: fadeIn 0.25s ease; }
   .slide.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-  h1 { font-size: 27px; font-weight: 800; margin-bottom: 6px; }
+  h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.2px; }
   .subtitle { color: var(--muted); font-size: 14.5px; margin-bottom: 18px; }
 
   .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
   .kpi { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
-  .kpi .label { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
-  .kpi .val { font-size: 25px; font-weight: 800; margin: 4px 0; }
+  .kpi .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+  .kpi .val { font-size: 24px; font-weight: 800; margin: 4px 0; }
   .kpi .sub { font-size: 12px; color: #cbd5e1; }
   .val.green { color: var(--green); }
   .val.red { color: var(--red); }
@@ -86,8 +85,8 @@
   .toggle-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
   .pill {
     background: #0f172a; border: 1px solid var(--border); color: var(--text);
-    padding: 7px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
-    cursor: pointer; transition: all 0.15s;
+    padding: 7px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
   }
   .pill:hover { border-color: var(--blue); }
   .pill.active { background: var(--teal); border-color: var(--teal); color: #042f2e; }
@@ -97,28 +96,19 @@
   canvas { width: 100%; border-radius: 10px; background: #0f172a; border: 1px solid var(--border); display: block; }
   input[type="range"] { width: 100%; accent-color: var(--teal); cursor: pointer; margin: 8px 0; }
 
-  /* Interactive animated bar chart */
   .bar-chart { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-  .bar-row { display: grid; grid-template-columns: 190px 1fr 120px; align-items: center; gap: 12px; font-size: 13px; }
-  .bar-track { background: #0f172a; height: 26px; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid var(--border); }
+  .bar-row { display: grid; grid-template-columns: 195px 1fr 120px; align-items: center; gap: 12px; font-size: 13px; }
+  .bar-track { background: #0f172a; height: 26px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
   .bar-fill { height: 100%; border-radius: 6px; transition: width 0.8s cubic-bezier(.22,1,.36,1); display: flex; align-items: center; padding-left: 8px; font-size: 11.5px; font-weight: 700; color: #fff; }
   .bar-fill.teal { background: linear-gradient(90deg, #0f766e, #14b8a6); }
   .bar-fill.red { background: linear-gradient(90deg, #991b1b, #ef4444); }
-  .bar-fill.amber { background: linear-gradient(90deg, #b45309, #f59e0b); }
 
-  /* Interactive 24-partition bars */
-  .part-grid { display: flex; align-items: flex-end; gap: 4px; height: 150px; padding: 14px 10px 6px; background: #0f172a; border-radius: 10px; border: 1px solid var(--border); position: relative; }
+  .part-grid { display: flex; align-items: flex-end; gap: 4px; height: 150px; padding: 14px 10px 6px; background: #0f172a; border-radius: 10px; border: 1px solid var(--border); }
   .part-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; cursor: pointer; }
   .part-bar { width: 100%; background: linear-gradient(180deg, #38bdf8, #0284c7); border-radius: 4px 4px 0 0; transition: height 0.7s ease, background 0.15s; }
   .part-col:hover .part-bar { background: #2dd4bf; }
   .part-lbl { font-size: 9.5px; color: var(--muted); margin-top: 4px; }
   #part-tooltip { font-size: 12.5px; color: #5eead4; font-weight: 600; margin-top: 8px; min-height: 20px; }
-
-  /* FAQ Accordion */
-  details.faq { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
-  details.faq[open] { border-color: var(--teal); }
-  details.faq summary { font-weight: 700; cursor: pointer; font-size: 14.5px; color: #e2e8f0; }
-  details.faq p { margin-top: 8px; color: #cbd5e1; font-size: 13.5px; }
 
   table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
   th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
@@ -152,194 +142,195 @@
       <span style="font-size:10px;color:#94a3b8;font-weight:500;display:block;">ARTI 4109 · Reto 4 · MATI</span>
     </div>
   </div>
-  <button class="nav-btn active" onclick="go(0)">1. Portada y Flujo en Vivo</button>
-  <button class="nav-btn" onclick="go(1)">2. Contexto y los 4 ASR</button>
-  <button class="nav-btn" onclick="go(2)">3. Funcional y Concurrencia</button>
-  <button class="nav-btn" onclick="go(3)">4. Contenedores y Aislamiento</button>
-  <button class="nav-btn" onclick="go(4)">5. Despliegue Multi-Región</button>
-  <button class="nav-btn" onclick="go(5)">6. Simulador de Fallas (EXP-1)</button>
-  <button class="nav-btn" onclick="go(6)">7. Carrera de Backlog (EXP-3)</button>
-  <button class="nav-btn" onclick="go(7)">8. Escala 40k y 24 Colas</button>
-  <button class="nav-btn" onclick="go(8)">9. Aprendizajes y Roadmap</button>
+  <button class="nav-btn active" onclick="go(0)">1. Resumen y flujo</button>
+  <button class="nav-btn" onclick="go(1)">2. Contexto y ASR críticos</button>
+  <button class="nav-btn" onclick="go(2)">3. Vista funcional y concurrencia</button>
+  <button class="nav-btn" onclick="go(3)">4. Contenedores y aislamiento</button>
+  <button class="nav-btn" onclick="go(4)">5. Despliegue multi-región</button>
+  <button class="nav-btn" onclick="go(5)">6. Caída de servidores (EXP-1)</button>
+  <button class="nav-btn" onclick="go(6)">7. Pico de 5.000/s (EXP-2 y 3)</button>
+  <button class="nav-btn" onclick="go(7)">8. Crecimiento a 40k (EXP-4)</button>
+  <button class="nav-btn" onclick="go(8)">9. Conclusiones y siguiente paso</button>
   <div class="hint">
-    <div style="margin-bottom:8px;font-weight:700;color:#e2e8f0;">Ver todo el proyecto</div>
-    <a href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener" style="display:block;color:#38bdf8;text-decoration:none;margin-bottom:4px;">Repo Documentación y Web →</a>
-    <a href="https://github.com/Feru34/Arquisoft-Reto4-Resultados" target="_blank" rel="noopener" style="display:block;color:#5eead4;text-decoration:none;margin-bottom:10px;">Repo Prototipo y 75 Corridas →</a>
-    Teclas <b>←</b> y <b>→</b> para avanzar · Clic en diagramas para zoom.
+    <div style="margin-bottom:8px;font-weight:700;color:#e2e8f0;">Repositorios del proyecto</div>
+    <a href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener" style="display:block;color:#38bdf8;text-decoration:none;margin-bottom:4px;">Documentación y presentación →</a>
+    <a href="https://github.com/Feru34/Arquisoft-Reto4-Resultados" target="_blank" rel="noopener" style="display:block;color:#5eead4;text-decoration:none;margin-bottom:10px;">Prototipo y 75 corridas →</a>
+    Usa las flechas <b>←</b> y <b>→</b> para cambiar de vista. Haz clic en cualquier diagrama para ampliarlo.
   </div>
 </aside>
 
 <main>
   <!-- SLIDE 0 -->
   <section class="slide active">
-    <h1>LogiSur Andina (LSA) · Propuesta de Arquitectura</h1>
-    <p class="subtitle">Validada empíricamente con <b>75 corridas controladas</b> en 12 contenedores Docker · Colombia, Ecuador y Perú</p>
+    <h1>LogiSur Andina (LSA) · Propuesta de arquitectura</h1>
+    <p class="subtitle">Diseño para la central de monitoreo en Colombia, Ecuador y Perú, probado con un prototipo en Docker (75 corridas)</p>
     <div class="visual-box dark">
-      <img src="assets/00_hero_animado_lsa.svg" alt="Arquitectura en Vivo" onclick="zoom(this)" />
+      <img src="assets/00_hero_animado_lsa.svg" alt="Flujo principal de señales" onclick="zoom(this)" />
     </div>
     <div class="kpi-grid">
-      <div class="kpi"><div class="label">Disponibilidad (DIS-1)</div><div class="val green">100 %</div><div class="sub">0 pánicos perdidos ante SIGKILL y pérdida de nodo</div></div>
-      <div class="kpi"><div class="label">Latencia Pánico (EXP-1c)</div><div class="val green">1,08 s</div><div class="sub">Meta &lt; 2 s (antes: 4 min en paro nacional)</div></div>
-      <div class="kpi"><div class="label">Pico 5.000/s (EXP-3)</div><div class="val blue">0,75 s</div><div class="sub">24 colas · normaliza en ≤ 1,4 s (base: &gt; 833 s)</div></div>
-      <div class="kpi"><div class="label">Capacidad (ESC-2)</div><div class="val amber">11.500/s</div><div class="sub">Lista para crecer de 18.000 a 40.000 camiones</div></div>
+      <div class="kpi"><div class="label">Disponibilidad (DIS-1)</div><div class="val green">100 %</div><div class="sub">No se perdió ningún pánico al tumbar servidores</div></div>
+      <div class="kpi"><div class="label">Tiempo de pánico (EXP-1c)</div><div class="val green">1,08 s</div><div class="sub">Meta &lt; 2 s (en el último paro nacional tardó 4 min)</div></div>
+      <div class="kpi"><div class="label">Pico de 5.000/s (EXP-3)</div><div class="val blue">0,75 s</div><div class="sub">Con 24 colas vuelve a lo normal en ≤ 1,4 s</div></div>
+      <div class="kpi"><div class="label">Capacidad (ESC-2)</div><div class="val amber">11.500/s</div><div class="sub">Alcanza para crecer de 18.000 a 40.000 camiones</div></div>
     </div>
   </section>
 
   <!-- SLIDE 1 -->
   <section class="slide">
-    <h1>Contexto de Negocio y los 4 ASR Críticos</h1>
-    <p class="subtitle">Tres frentes (Central de Emergencias, Venta en Línea y LSA Plus) con aislamiento absoluto</p>
+    <h1>Qué pasa hoy y cuáles ASR definen el diseño</h1>
+    <p class="subtitle">LSA tiene tres frentes (Central de emergencias, Venta en línea y LSA Plus), pero una falla en Plus no puede tocar la central</p>
     <div class="visual-box">
-      <img src="assets/slides/portada-camion-lsa.png" style="max-height:260px;" alt="Flota LSA" onclick="zoom(this)" />
-      <div class="caption">Incidente real: 4 minutos de retraso en pánico durante paro nacional → Meta &lt; 2 s</div>
+      <img src="assets/slides/portada-camion-lsa.png" style="max-height:250px;" alt="Camión LogiSur Andina" onclick="zoom(this)" />
+      <div class="caption">En el último paro nacional un pánico tardó 4 minutos en llegar al operador. La meta es menos de 2 segundos.</div>
     </div>
     <table>
-      <thead><tr><th>ASR Crítico</th><th>Estímulo</th><th>Meta</th><th>Decisión Arquitectónica</th></tr></thead>
+      <thead><tr><th>ASR crítico</th><th>Situación</th><th>Meta</th><th>Qué nos obliga a decidir</th></tr></thead>
       <tbody>
-        <tr><td><b>DIS-1 ★</b></td><td>Caída de servidor en ráfaga de pánicos</td><td>≥ 99,99 % guardados (&lt; 2 s)</td><td>Réplicas RF=3, acuse tras replicar, heartbeat</td></tr>
-        <tr><td><b>LAT-1 ★</b></td><td>Pico de 5.000 señales/s</td><td>Guardado p99 &lt; 1 min · 0 pérdidas</td><td>Receptores sin estado + carril exclusivo pánico</td></tr>
-        <tr><td><b>LAT-2 ★</b></td><td>Pico sostenido de 5.000 señales/s (5 min)</td><td>Detección p99 &lt; 5 s · 0 desorden</td><td>24 colas hash(camionId) + 1 worker/cola</td></tr>
-        <tr><td><b>ESC-2 ★</b></td><td>Flota crece 18.000 → 40.000 camiones</td><td>≈ 11.000/s · 0 cambios de código</td><td>24 particiones fijas + escalado horizontal</td></tr>
+        <tr><td><b>DIS-1</b></td><td>Cae un servidor en plena ráfaga de pánicos</td><td>≥ 99,99 % guardados (&lt; 2 s)</td><td>Réplicas activas (RF=3), acuse tras replicar y monitor de latidos</td></tr>
+        <tr><td><b>LAT-1</b></td><td>Pico de 5.000 señales/s</td><td>Guardar en p99 &lt; 1 min · 0 pérdidas</td><td>Receptores sin estado y un carril exclusivo para el pánico</td></tr>
+        <tr><td><b>LAT-2</b></td><td>Pico sostenido 5 minutos</td><td>Detectar en p99 &lt; 5 s · 0 desorden</td><td>24 colas por hash del camión, con un worker por cola</td></tr>
+        <tr><td><b>ESC-2</b></td><td>La flota pasa de 18.000 a 40.000 camiones</td><td>≈ 11.000/s sin cambiar código</td><td>Fijar las 24 particiones desde el inicio y escalar nodos</td></tr>
       </tbody>
     </table>
   </section>
 
   <!-- SLIDE 2 -->
   <section class="slide">
-    <h1>Vista Funcional y de Concurrencia (Tácticas T1–T4)</h1>
-    <p class="subtitle">Acuse síncrono tras replicar (durabilidad) separado de detección asíncrona en 24 pipelines</p>
-    <div class="visual-box"><img src="assets/slides/vista-funcional.png" alt="Vista Funcional" onclick="zoom(this)" /><div class="caption">Vista Funcional · Clic para ampliar</div></div>
-    <div class="visual-box"><img src="assets/slides/vista-concurrencia.png" alt="Vista de Concurrencia" onclick="zoom(this)" /><div class="caption">Vista de Concurrencia · 3 receptores, 2 despachadores, 24 pipelines independientes</div></div>
+    <h1>Vista funcional y concurrencia</h1>
+    <p class="subtitle">El acuse al camión se envía solo después de replicar; la detección de anomalías corre en paralelo en 24 pipelines</p>
+    <div class="visual-box"><img src="assets/slides/vista-funcional.png" alt="Vista Funcional" onclick="zoom(this)" /><div class="caption">Vista funcional de la ruta crítica (clic para ampliar)</div></div>
+    <div class="visual-box"><img src="assets/slides/vista-concurrencia.png" alt="Vista de Concurrencia" onclick="zoom(this)" /><div class="caption">Vista de concurrencia: 3 receptores, 2 despachadores y 24 colas independientes</div></div>
   </section>
 
   <!-- SLIDE 3 -->
   <section class="slide">
-    <h1>Vista de Contenedores y Aislamiento de Zonas</h1>
-    <p class="subtitle">Ninguna falla o cierre de mes en LSA Plus puede impactar a la Central de Emergencias</p>
-    <div class="visual-box"><img src="assets/09_anim_aislamiento_zonas.svg" alt="Animación de Aislamiento" onclick="zoom(this)" /></div>
-    <div class="visual-box"><img src="assets/slides/vista-contenedores.png" alt="Vista de Contenedores" onclick="zoom(this)" /><div class="caption">Solo 2 conexiones asíncronas entre Zona Crítica y Zona de Clientes</div></div>
+    <h1>Contenedores y separación entre la central y LSA Plus</h1>
+    <p class="subtitle">La central no llama nunca a LSA Plus en tiempo de ejecución; solo existen dos cruces asíncronos entre zonas</p>
+    <div class="visual-box"><img src="assets/09_anim_aislamiento_zonas.svg" alt="Separación entre zonas" onclick="zoom(this)" /></div>
+    <div class="visual-box"><img src="assets/slides/vista-contenedores.png" alt="Vista de Contenedores" onclick="zoom(this)" /><div class="caption">Zona crítica (arriba) y zona de clientes (abajo), desacopladas por el log de eventos</div></div>
   </section>
 
   <!-- SLIDE 4 -->
   <section class="slide">
-    <h1>Topología de Despliegue: Multi-AZ y Multi-Región Activa</h1>
-    <p class="subtitle">2 Zonas de Disponibilidad en Bogotá + Failover Activo Colombia / Ecuador / Perú (Anycast DNS · PACELC)</p>
-    <div class="visual-box"><img src="assets/slides/vista-despliegue-bogota.png" alt="Despliegue Bogotá 2 AZ" onclick="zoom(this)" /><div class="caption">Nivel 1: Región Bogotá (Zona A y Zona B con réplica sincrónica y clúster de 3 nodos de colas)</div></div>
-    <div class="visual-box"><img src="assets/slides/topologia-multiregion.png" alt="Topología Multi-Región" onclick="zoom(this)" /><div class="caption">Nivel 2: Multi-Región Activa (Colombia primaria · Ecuador y Perú failover)</div></div>
+    <h1>Despliegue: dos zonas locales y respaldo en tres países</h1>
+    <p class="subtitle">Operación activa en dos zonas cercanas a Bogotá y failover hacia Ecuador y Perú si falla la región principal</p>
+    <div class="visual-box"><img src="assets/slides/vista-despliegue-bogota.png" alt="Despliegue Bogotá 2 AZ" onclick="zoom(this)" /><div class="caption">Despliegue regional en Zona A y Zona B, con réplica sincrónica para casos y segmento aparte para Plus</div></div>
+    <div class="visual-box"><img src="assets/slides/topologia-multiregion.png" alt="Topología Multi-Región" onclick="zoom(this)" /><div class="caption">Respaldo multi-región (Colombia primaria; Ecuador y Perú como réplicas activas)</div></div>
   </section>
 
-  <!-- SLIDE 5: CHAOS SIMULATOR EN VIVO (EXP-1 / 1b / 1c) -->
+  <!-- SLIDE 5: PRUEBA EN VIVO EXP-1 -->
   <section class="slide">
-    <h1>🔥 Simulador Interactivo de Fallas (EXP-1, EXP-1b y EXP-1c)</h1>
-    <p class="subtitle">Inyecta un <b>SIGKILL</b> en vivo y compara cómo responde la arquitectura con réplicas vs. la línea base</p>
+    <h1>Qué pasa si cae un servidor en plena ráfaga (EXP-1, 1b y 1c)</h1>
+    <p class="subtitle">Prueba aquí qué ocurre al matar un nodo de golpe (SIGKILL) con nuestra arquitectura frente a la línea base</p>
 
     <div class="sim-panel">
       <div class="sim-title">
-        <span>⚡ Control de Caos en Vivo (flujo de pánicos en tiempo real)</span>
-        <span id="chaos-status" style="font-size:12px;color:#4ade80;">● Sistema saludable</span>
+        <span>Simulación de caída en vivo</span>
+        <span id="chaos-status" style="font-size:12px;color:#4ade80;">Sistema operando normal</span>
       </div>
       <div class="toggle-group">
-        <button class="pill active" id="btn-mode-tac" onclick="setChaosMode('tactica')">✅ Arquitectura Con Táctica (RF=3 · ×2)</button>
-        <button class="pill danger" id="btn-mode-base" onclick="setChaosMode('base')">❌ Línea Base (Sin réplicas)</button>
-        <button class="pill danger" onclick="killNode()">🔥 Inyectar SIGKILL (Matar Nodo)</button>
-        <button class="pill" onclick="resetChaos()">🔄 Restaurar</button>
+        <button class="pill active" id="btn-mode-tac" onclick="setChaosMode('tactica')">Con táctica (réplicas RF=3)</button>
+        <button class="pill danger" id="btn-mode-base" onclick="setChaosMode('base')">Línea base (sin réplicas)</button>
+        <button class="pill danger" onclick="killNode()">Tumbar nodo (SIGKILL)</button>
+        <button class="pill" onclick="resetChaos()">Reiniciar prueba</button>
       </div>
       <canvas id="chaosCanvas" width="900" height="220"></canvas>
       <div class="kpi-grid" style="margin-top:12px;margin-bottom:0;">
-        <div class="kpi"><div class="label">Pánicos Emitidos</div><div class="val blue" id="c-sent">0</div></div>
+        <div class="kpi"><div class="label">Pánicos enviados</div><div class="val blue" id="c-sent">0</div></div>
         <div class="kpi"><div class="label">Guardados en BD</div><div class="val green" id="c-saved">0</div></div>
-        <div class="kpi"><div class="label">Pánicos Perdidos</div><div class="val red" id="c-lost">0</div></div>
-        <div class="kpi"><div class="label">p99 Real Medido</div><div class="val green" id="c-lat">1,08 s</div></div>
+        <div class="kpi"><div class="label">Pánicos perdidos</div><div class="val red" id="c-lost">0</div></div>
+        <div class="kpi"><div class="label">p99 medido</div><div class="val green" id="c-lat">1,08 s</div></div>
       </div>
     </div>
 
     <div class="sim-panel" style="border-color:var(--border);">
-      <div class="sim-title" style="color:var(--blue);">📊 Comparativa Animada de Resultados Reales (EXP-1b · 58.000 pánicos/escenario)</div>
+      <div class="sim-title" style="color:var(--blue);">Resultados cuando la máquina no vuelve (EXP-1b · 58.000 pánicos por prueba)</div>
       <div class="bar-chart" id="exp1-bars">
-        <div class="bar-row"><span>Táctica · Nodo Despachador</span><div class="bar-track"><div class="bar-fill teal" data-w="100%" style="width:0">100 %</div></div><span>0 perdidos</span></div>
-        <div class="bar-row"><span>Base · Nodo Despachador</span><div class="bar-track"><div class="bar-fill red" data-w="38%" style="width:0">38,0 %</div></div><span style="color:#f87171;">35.697 perd.</span></div>
-        <div class="bar-row"><span>Táctica · Nodo Broker</span><div class="bar-track"><div class="bar-fill teal" data-w="100%" style="width:0">100 %</div></div><span>0 perdidos</span></div>
-        <div class="bar-row"><span>Base · Nodo Broker</span><div class="bar-track"><div class="bar-fill red" data-w="38.8%" style="width:0">38,8 %</div></div><span style="color:#f87171;">35.494 perd.</span></div>
+        <div class="bar-row"><span>Táctica · sin despachador</span><div class="bar-track"><div class="bar-fill teal" data-w="100%" style="width:0">100 %</div></div><span>0 perdidos</span></div>
+        <div class="bar-row"><span>Base · sin despachador</span><div class="bar-track"><div class="bar-fill red" data-w="38%" style="width:0">38,0 %</div></div><span style="color:#f87171;">35.697 perd.</span></div>
+        <div class="bar-row"><span>Táctica · sin broker</span><div class="bar-track"><div class="bar-fill teal" data-w="100%" style="width:0">100 %</div></div><span>0 perdidos</span></div>
+        <div class="bar-row"><span>Base · sin broker</span><div class="bar-track"><div class="bar-fill red" data-w="38.8%" style="width:0">38,8 %</div></div><span style="color:#f87171;">35.494 perd.</span></div>
       </div>
     </div>
 
-    <div class="visual-box dark"><img src="assets/10_anim_sesion_2s_exp1c.svg" alt="Carrera Sesión 6s vs 2s" onclick="zoom(this)" /></div>
+    <div class="visual-box dark"><img src="assets/10_anim_sesion_2s_exp1c.svg" alt="Ajuste de sesión 6s a 2s" onclick="zoom(this)" /></div>
   </section>
 
-  <!-- SLIDE 6: CARRERA BACKLOG ANIMADA (EXP-2 / EXP-3) -->
+  <!-- SLIDE 6: BACKLOG EXP-2 / EXP-3 -->
   <section class="slide">
-    <h1>▶️ Carrera en Vivo del Backlog en Pico de 5.000/s (EXP-2 y EXP-3)</h1>
-    <p class="subtitle">Pulsa reproducir para ver cómo la cola única acumula 2,05 millones mientras las 24 colas procesan en 0,75 s</p>
+    <h1>24 colas absorben el pico; una sola se atrasa (EXP-2 y EXP-3)</h1>
+    <p class="subtitle">Guardar no es el cuello de botella (ambas cumplen EXP-2). El problema de la cola única aparece al procesar las reglas</p>
 
     <div class="sim-panel">
       <div class="sim-title">
-        <span>📈 Evolución Real del Backlog (t = 0 s → 600 s · Ventana de pico 30 s – 330 s)</span>
-        <button class="pill active" onclick="startBacklogAnim()">▶️ Reproducir Pico en Vivo</button>
+        <span>Evolución de la cola pendiente (0 s a 600 s · pico de 5.000/s entre 30 s y 330 s)</span>
+        <button class="pill active" onclick="startBacklogAnim()">Reproducir pico</button>
       </div>
       <canvas id="backlogCanvas" width="900" height="270"></canvas>
       <div class="kpi-grid" style="margin-top:12px;margin-bottom:0;">
-        <div class="kpi"><div class="label">Tiempo Simulado</div><div class="val blue" id="b-time">0 s</div></div>
-        <div class="kpi"><div class="label">Backlog Táctica (24 colas)</div><div class="val green" id="b-tac">0</div><div class="sub">p99 = 0,749 s · Normaliza ≤ 1,4 s</div></div>
-        <div class="kpi"><div class="label">Backlog Base (1 cola)</div><div class="val red" id="b-base">0</div><div class="sub">p99 &gt; 832,8 s · Nunca normaliza</div></div>
+        <div class="kpi"><div class="label">Tiempo</div><div class="val blue" id="b-time">0 s</div></div>
+        <div class="kpi"><div class="label">Cola con táctica (24 colas)</div><div class="val green" id="b-tac">0</div><div class="sub">p99 = 0,749 s · vuelve a lo normal en ≤ 1,4 s</div></div>
+        <div class="kpi"><div class="label">Cola línea base (1 cola)</div><div class="val red" id="b-base">0</div><div class="sub">p99 &gt; 832,8 s · acumula ~2,05 M y no recupera</div></div>
       </div>
     </div>
 
-    <div class="visual-box dark"><img src="assets/08_anim_colas_vs_unica_exp3.svg" alt="1 Cola vs 24 Colas" onclick="zoom(this)" /></div>
+    <div class="visual-box dark"><img src="assets/08_anim_colas_vs_unica_exp3.svg" alt="Comparación 1 cola vs 24 colas" onclick="zoom(this)" /></div>
   </section>
 
-  <!-- SLIDE 7: ESCALABILIDAD 40K Y 24 PARTICIONES INTERACTIVAS -->
+  <!-- SLIDE 7: ESCALABILIDAD 40K Y 24 PARTICIONES -->
   <section class="slide">
-    <h1>⚖️ Calculadora de Escalado (40.000 Camiones) y 24 Particiones</h1>
-    <p class="subtitle">Explora las 24 colas reales medidas (pasa el mouse sobre cada barra) y proyecta el crecimiento de flota</p>
+    <h1>¿Alcanza para 40.000 camiones? (EXP-4 y ESC-2)</h1>
+    <p class="subtitle">Mueve el control para ver cuánta carga recibe cada una de las 24 colas y revisa el reparto real medido por partición</p>
 
     <div class="sim-panel">
-      <div class="sim-title">🚛 Flota Proyectada: <span id="fleet-val" style="color:#fff;font-size:18px;">40.000</span> camiones</div>
+      <div class="sim-title">Flota proyectada: <span id="fleet-val" style="color:#fff;font-size:18px;">40.000</span> camiones</div>
       <input type="range" min="18000" max="45000" step="1000" value="40000" oninput="calcScale(this.value)" />
       <div class="kpi-grid" id="scale-kpis" style="margin-bottom:0;"></div>
     </div>
 
     <div class="sim-panel" style="border-color:var(--border);">
-      <div class="sim-title" style="color:var(--blue);">📊 Distribución Real en las 24 Particiones · Hash FNV-1a(truck_id) (Pasa el cursor)</div>
+      <div class="sim-title" style="color:var(--blue);">Reparto real en las 24 particiones (pasa el cursor sobre cada barra)</div>
       <div class="part-grid" id="part-grid"></div>
-      <div id="part-tooltip">Pasa el mouse sobre cualquier partición (P0–P23) para ver el conteo exacto de señales y desviación.</div>
+      <div id="part-tooltip">Pasa el mouse sobre una partición (P0–P23) para ver cuántas señales recibió y su desviación frente al promedio.</div>
     </div>
 
-    <div class="visual-box"><img src="assets/06_mapa_calor_recursos.svg" alt="Recursos CPU y RAM" onclick="zoom(this)" /></div>
+    <div class="visual-box"><img src="assets/06_mapa_calor_recursos.svg" alt="Uso de CPU y RAM" onclick="zoom(this)" /></div>
   </section>
 
-  <!-- SLIDE 8: APRENDIZAJES -->
+  <!-- SLIDE 8: CONCLUSIONES -->
   <section class="slide">
-    <h1>Aprendizajes, Transparencia y Roadmap</h1>
-    <p class="subtitle">7 correcciones reales en 75 corridas y siguientes pasos hacia producción en AWS</p>
+    <h1>Lo que confirmamos y lo que sigue</h1>
+    <p class="subtitle">Resumen honesto de las 75 corridas, sus limitaciones en un solo equipo y el paso siguiente a la nube</p>
     <div class="kpi-grid">
-      <div class="kpi"><div class="label">Durabilidad Real</div><div class="val green">fsync ON</div><div class="sub">Desactivamos bypass de fsync y rebalanceo de líderes en Redpanda</div></div>
-      <div class="kpi"><div class="label">Meta &lt; 2 s</div><div class="val blue">Configuración</div><div class="sub">No requiere cambiar arquitectura: sesión 2 s + latido 0,5 s</div></div>
-      <div class="kpi"><div class="label">Próximo Paso</div><div class="val amber">AWS EC2</div><div class="sub">Desplegar el mismo compose en múltiples EC2 Multi-AZ</div></div>
+      <div class="kpi"><div class="label">Persistencia real</div><div class="val green">fsync activo</div><div class="sub">Quitamos el bypass de fsync y el rebalanceo de líderes en Redpanda</div></div>
+      <div class="kpi"><div class="label">Meta &lt; 2 s</div><div class="val blue">Configuración</div><div class="sub">Se cumplió ajustando sesión a 2 s y latido a 0,5 s, sin rediseñar</div></div>
+      <div class="kpi"><div class="label">Siguiente paso</div><div class="val amber">AWS EC2</div><div class="sub">Correr el mismo compose repartido en varias instancias EC2</div></div>
     </div>
     <table>
-      <thead><tr><th>Hallazgo / Conclusión Validada</th><th>Evidencia Directa</th></tr></thead>
+      <thead><tr><th>Conclusión</th><th>Qué mostraron las pruebas</th></tr></thead>
       <tbody>
-        <tr><td><b>Cero pérdida de pánicos (DIS-1)</b></td><td>100 % guardados incluso perdiendo un nodo completo con su disco (vs. 38 % en línea base).</td></tr>
-        <tr><td><b>24 colas justificadas por LAT-2</b></td><td>p99 = 0,75 s y normalización en ≤ 1,4 s frente a &gt; 833 s y 2,05 M de backlog con 1 cola.</td></tr>
-        <tr><td><b>Caso borde documentado</b></td><td>Error producer_state en Redpanda perdió 2 (EXP-1) y 4 (EXP-1b) telemetrías acusadas (0 pánicos afectados).</td></tr>
-        <tr><td><b>Transparencia experimental</b></td><td>Ejecutado en 1 equipo (Apple M5); cifras absolutas indicativas, comparación controlada concluyente.</td></tr>
+        <tr><td><b>Sin pérdida de pánicos (DIS-1)</b></td><td>0 perdidos incluso cuando se pierde una máquina completa con su disco (la base perdió ~61 %).</td></tr>
+        <tr><td><b>Las 24 colas se justifican por LAT-2</b></td><td>Guardar es rápido incluso con 1 cola; el paralelismo se necesita para procesar a tiempo (0,75 s vs &gt; 833 s).</td></tr>
+        <tr><td><b>Caso borde encontrado</b></td><td>En falla de broker con acks=all se perdieron 2 y 4 telemetrías por un error producer_state (0 pánicos afectados).</td></tr>
+        <tr><td><b>Limitación del entorno</b></td><td>Todo corrió en un solo MacBook (Apple M5); lo concluyente es la comparación táctica vs. línea base bajo la misma carga.</td></tr>
       </tbody>
     </table>
+
     <div class="sim-panel" style="border-color:var(--blue);margin-top:16px;">
-      <div class="sim-title" style="color:var(--blue);">🔗 ¿Quieres ver todo el proyecto, código fuente y evidencia completa?</div>
+      <div class="sim-title" style="color:var(--blue);">Si quieres ver el proyecto completo, el código y las 75 corridas:</div>
       <div class="toggle-group" style="margin-bottom:4px;">
-        <a class="pill active" href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener" style="text-decoration:none;">📁 Repo Arquitectura y Presentación</a>
-        <a class="pill" href="https://github.com/Feru34/Arquisoft-Reto4-Resultados" target="_blank" rel="noopener" style="text-decoration:none;border-color:var(--teal);color:#5eead4;">🧪 Repo Prototipo y 75 Corridas</a>
-        <a class="pill" href="evidencia/informe-experimental.html" style="text-decoration:none;">🌐 Informe HTML</a>
-        <a class="pill" href="evidencia/docker-compose.yml" style="text-decoration:none;">🐳 docker-compose.yml</a>
+        <a class="pill active" href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener">Repo documentación y presentación</a>
+        <a class="pill" href="https://github.com/Feru34/Arquisoft-Reto4-Resultados" target="_blank" rel="noopener" style="border-color:var(--teal);color:#5eead4;">Repo prototipo y resultados completos</a>
+        <a class="pill" href="evidencia/informe-experimental.html">Informe HTML</a>
+        <a class="pill" href="evidencia/docker-compose.yml">docker-compose.yml</a>
       </div>
     </div>
   </section>
 
   <div class="footer-nav">
-    <button class="btn-step" onclick="step(-1)">⬅️ Anterior</button>
+    <button class="btn-step" onclick="step(-1)">← Anterior</button>
     <span id="page-indicator" style="color:#94a3b8;font-size:13px;align-self:center;">1 / 9</span>
-    <button class="btn-step" onclick="step(1)">Siguiente ➡️</button>
+    <button class="btn-step" onclick="step(1)">Siguiente →</button>
   </div>
 </main>
 
@@ -378,7 +369,7 @@
     });
   }
 
-  // --- LIVE CHAOS SIMULATOR (SLIDE 5) ---
+  // --- SIMULADOR DE CAIDA EN VIVO (SLIDE 5) ---
   let chaosMode = 'tactica';
   let nodeDead = false;
   let cSent = 0, cSaved = 0, cLost = 0;
@@ -395,14 +386,14 @@
   function killNode() {
     nodeDead = true;
     document.getElementById('chaos-status').innerHTML = chaosMode === 'tactica'
-      ? '<span style="color:#fbbf24;">⚠️ SIGKILL en Nodo 1 → Failover automático a Réplica 2 (0 pérdidas)</span>'
-      : '<span style="color:#ef4444;">🔥 SIGKILL en Nodo Único → ¡PÉRDIDA MASIVA DE PÁNICOS!</span>';
-    document.getElementById('c-lat').textContent = chaosMode === 'tactica' ? '1,08 s' : 'PERDIDOS';
+      ? '<span style="color:#fbbf24;">Nodo 1 caído: la réplica 2 toma el tráfico (0 pérdidas)</span>'
+      : '<span style="color:#ef4444;">Nodo único caído: se pierden los pánicos</span>';
+    document.getElementById('c-lat').textContent = chaosMode === 'tactica' ? '1,08 s' : 'Sin servicio';
     document.getElementById('c-lat').className = 'val ' + (chaosMode === 'tactica' ? 'green' : 'red');
   }
   function resetChaos() {
     nodeDead = false; cSent = 0; cSaved = 0; cLost = 0; packets.length = 0;
-    document.getElementById('chaos-status').innerHTML = '<span style="color:#4ade80;">● Sistema saludable</span>';
+    document.getElementById('chaos-status').innerHTML = '<span style="color:#4ade80;">Sistema operando normal</span>';
     document.getElementById('c-lat').textContent = chaosMode === 'tactica' ? '0,35 s' : '0,28 s';
     document.getElementById('c-lat').className = 'val green';
     updateChaosKPIs();
@@ -417,14 +408,13 @@
     if (cur !== 5) return;
     cSent++;
     const route = (chaosMode === 'tactica' && nodeDead) ? 1 : (chaosMode === 'tactica' ? (cSent % 2) : 0);
-    packets.push({ x: 145, y: 110, route, lost: (chaosMode === 'base' && nodeDead), done: false });
+    packets.push({ x: 145, y: 110, route, lost: (chaosMode === 'base' && nodeDead) });
     updateChaosKPIs();
   }, 360);
 
   function drawChaos() {
     if (cur === 5) {
       cCtx.clearRect(0, 0, 900, 220);
-      // Draw boxes
       const box = (x, y, w, h, title, sub, stroke, fill) => {
         cCtx.fillStyle = fill; cCtx.strokeStyle = stroke; cCtx.lineWidth = 2;
         cCtx.beginPath(); cCtx.roundRect(x, y, w, h, 8); cCtx.fill(); cCtx.stroke();
@@ -433,20 +423,16 @@
         cCtx.fillStyle = '#cbd5e1'; cCtx.font = '11px system-ui';
         cCtx.fillText(sub, x + w/2, y + 44);
       };
-      box(25, 80, 120, 60, '🚨 OBU Pánico', 'Ráfaga 400/5s', '#f97316', '#1e293b');
+      box(25, 80, 120, 60, 'OBU Pánico', 'Ráfaga 400/5s', '#f97316', '#1e293b');
       box(220, 80, 130, 60, 'HAProxy + Rec.', chaosMode==='tactica'?'3 activos':'1 activo', '#a855f7', '#1e293b');
-
-      // Node 1
-      box(430, 28, 175, 62, nodeDead ? '💀 Nodo 1 CAÍDO' : 'Despachador 1', nodeDead ? 'SIGKILL (sin disco)' : (chaosMode==='tactica'?'RF=3 · acks=all':'Sin réplicas'), nodeDead ? '#ef4444' : '#38bdf8', nodeDead ? '#450a0a' : '#1e293b');
-      // Node 2 (only in tactica)
+      box(430, 28, 175, 62, nodeDead ? 'Nodo 1 CAÍDO' : 'Despachador 1', nodeDead ? 'SIGKILL sin disco' : (chaosMode==='tactica'?'RF=3 · acks=all':'Sin réplicas'), nodeDead ? '#ef4444' : '#38bdf8', nodeDead ? '#450a0a' : '#1e293b');
       if (chaosMode === 'tactica') {
-        box(430, 126, 175, 62, '✅ Réplica 2 ACTIVA', nodeDead ? 'Asume 100 % tráfico' : 'En grupo (sesión 2s)', '#22c55e', '#064e3b');
+        box(430, 126, 175, 62, 'Réplica 2 ACTIVA', nodeDead ? 'Asume 100 % tráfico' : 'En grupo (sesión 2s)', '#22c55e', '#064e3b');
       } else {
-        box(430, 126, 175, 62, 'Sin Réplica', '(Línea Base)', '#475569', '#0f172a');
+        box(430, 126, 175, 62, 'Sin réplica', '(Línea base)', '#475569', '#0f172a');
       }
-      box(710, 80, 160, 60, '🗄️ PostgreSQL', 'BD Casos Pánico', '#14b8a6', '#1e293b');
+      box(710, 80, 160, 60, 'PostgreSQL', 'BD Casos Pánico', '#14b8a6', '#1e293b');
 
-      // Lines
       cCtx.strokeStyle = '#475569'; cCtx.lineWidth = 2;
       cCtx.beginPath(); cCtx.moveTo(145, 110); cCtx.lineTo(220, 110); cCtx.stroke();
       cCtx.beginPath(); cCtx.moveTo(350, 110); cCtx.lineTo(430, 59); cCtx.stroke();
@@ -454,7 +440,6 @@
       cCtx.beginPath(); cCtx.moveTo(605, 59); cCtx.lineTo(710, 110); cCtx.stroke();
       if (chaosMode === 'tactica') { cCtx.beginPath(); cCtx.moveTo(605, 157); cCtx.lineTo(710, 110); cCtx.stroke(); }
 
-      // Packets
       for (let i = packets.length - 1; i >= 0; i--) {
         const p = packets[i];
         p.x += 5.5;
@@ -478,12 +463,11 @@
   }
   requestAnimationFrame(drawChaos);
 
-  // --- ANIMATED BACKLOG RACE (SLIDE 6) ---
+  // --- CURVA ANIMADA DE BACKLOG (SLIDE 6) ---
   let blFrame = 0, blTimer = null;
   const bCanvas = document.getElementById('backlogCanvas');
   const bCtx = bCanvas.getContext('2d');
 
-  // Representative real curve points (t_s, base_k, tactica_k) from EXP-3
   const blCurve = [];
   for (let t = 0; t <= 600; t += 10) {
     let baseK = 0, tacK = 0.4;
@@ -510,14 +494,12 @@
   function drawBacklog(limit) {
     const w = 900, h = 270, px0 = 65, py0 = 24, pw = 805, ph = 205;
     bCtx.clearRect(0, 0, w, h);
-    // Peak highlight
     const x1 = px0 + (30/600)*pw, x2 = px0 + (330/600)*pw;
     bCtx.fillStyle = 'rgba(245, 158, 11, 0.14)';
     bCtx.fillRect(x1, py0, x2 - x1, ph);
     bCtx.fillStyle = '#fbbf24'; bCtx.font = 'bold 11px system-ui'; bCtx.textAlign = 'center';
-    bCtx.fillText('VENTANA DE PICO: 5.000 señales/s (30 s – 330 s)', (x1+x2)/2, py0 + 15);
+    bCtx.fillText('Pico de 5.000 señales/s (30 s – 330 s)', (x1+x2)/2, py0 + 15);
 
-    // Grid
     bCtx.strokeStyle = '#1e293b'; bCtx.lineWidth = 1;
     [0, 500, 1000, 1500, 2000].forEach(v => {
       const y = py0 + ph - (v/2200)*ph;
@@ -526,7 +508,6 @@
       bCtx.fillText(v === 0 ? '0' : (v >= 1000 ? (v/1000).toFixed(1)+'M' : v+'k'), px0 - 8, y + 4);
     });
 
-    // Base line (red)
     bCtx.strokeStyle = '#ef4444'; bCtx.lineWidth = 3; bCtx.beginPath();
     for (let i = 0; i <= Math.min(limit, blCurve.length-1); i++) {
       const x = px0 + (blCurve[i].t/600)*pw;
@@ -535,7 +516,6 @@
     }
     bCtx.stroke();
 
-    // Tactica line (teal)
     bCtx.strokeStyle = '#14b8a6'; bCtx.lineWidth = 3; bCtx.beginPath();
     for (let i = 0; i <= Math.min(limit, blCurve.length-1); i++) {
       const x = px0 + (blCurve[i].t/600)*pw;
@@ -544,14 +524,13 @@
     }
     bCtx.stroke();
 
-    // X labels
     bCtx.fillStyle = '#94a3b8'; bCtx.textAlign = 'center';
     [0, 100, 200, 300, 400, 500, 600].forEach(t => {
       bCtx.fillText(t + ' s', px0 + (t/600)*pw, py0 + ph + 20);
     });
   }
 
-  // --- 24 PARTITIONS INTERACTIVE CHART (SLIDE 7) ---
+  // --- 24 PARTICIONES (SLIDE 7) ---
   const partCounts = [31600,31281,30215,31039,30673,31860,31093,30964,31138,31289,31691,31566,32138,30247,31259,30673,30945,31136,31852,31028,31135,31623,31368,32183];
   const partMean = partCounts.reduce((a,b)=>a+b,0) / 24;
 
@@ -570,7 +549,7 @@
   }
   function showPart(i, c, dev) {
     document.getElementById('part-tooltip').textContent =
-      `Partición P${i}: ${c.toLocaleString('es-CO')} señales · Desviación frente al promedio: ${dev} % (Meta: ±10 %)`;
+      `Partición P${i}: ${c.toLocaleString('es-CO')} señales · Desviación frente al promedio: ${dev} % (meta: ±10 %)`;
   }
 
   function calcScale(trucks) {
@@ -581,9 +560,9 @@
     const util = Math.round((peak / 11520) * 100);
     const ok = util <= 100;
     document.getElementById('scale-kpis').innerHTML = `
-      <div class="kpi"><div class="label">Pico Proyectado</div><div class="val blue">${peak.toLocaleString('es-CO')}/s</div><div class="sub">Escala lineal desde 5.000/s (18k)</div></div>
-      <div class="kpi"><div class="label">Carga por Cola (24)</div><div class="val ${ok?'green':'red'}">${perQueue}/s</div><div class="sub">Tope por worker medido: ~480/s</div></div>
-      <div class="kpi"><div class="label">Uso de Capacidad</div><div class="val ${ok?'green':'amber'}">${util} %</div><div class="sub">${ok ? '✓ Holgura sin cambiar código' : '⚠ Escalar a 32 colas/workers'}</div></div>
+      <div class="kpi"><div class="label">Pico proyectado</div><div class="val blue">${peak.toLocaleString('es-CO')}/s</div><div class="sub">Proporcional desde 5.000/s con 18.000 camiones</div></div>
+      <div class="kpi"><div class="label">Carga por cola (24)</div><div class="val ${ok?'green':'red'}">${perQueue}/s</div><div class="sub">Capacidad medida por worker: ~480/s</div></div>
+      <div class="kpi"><div class="label">Uso de capacidad</div><div class="val ${ok?'green':'amber'}">${util} %</div><div class="sub">${ok ? 'Alcanza sin cambios de código' : 'Conviene subir a 32 colas'}</div></div>
     `;
   }
 
