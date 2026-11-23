@@ -147,10 +147,11 @@
   <button class="nav-btn" onclick="go(2)">3. Vista funcional y concurrencia</button>
   <button class="nav-btn" onclick="go(3)">4. Contenedores y aislamiento</button>
   <button class="nav-btn" onclick="go(4)">5. Despliegue multi-región</button>
-  <button class="nav-btn" onclick="go(5)">6. Caída de servidores (EXP-1)</button>
-  <button class="nav-btn" onclick="go(6)">7. Pico de 5.000/s (EXP-2 y 3)</button>
-  <button class="nav-btn" onclick="go(7)">8. Crecimiento a 40k (EXP-4)</button>
-  <button class="nav-btn" onclick="go(8)">9. Conclusiones y siguiente paso</button>
+  <button class="nav-btn" onclick="go(5)">6. Cómo probamos la arquitectura</button>
+  <button class="nav-btn" onclick="go(6)">7. Caída de servidores (EXP-1)</button>
+  <button class="nav-btn" onclick="go(7)">8. Pico de 5.000/s (EXP-2 y 3)</button>
+  <button class="nav-btn" onclick="go(8)">9. Crecimiento a 40k (EXP-4)</button>
+  <button class="nav-btn" onclick="go(9)">10. Conclusiones y siguiente paso</button>
   <div class="hint">
     <div style="margin-bottom:8px;font-weight:700;color:#e2e8f0;">Repositorios del proyecto</div>
     <a href="https://github.com/DaveGuarnizo/MATI-ArqSoft-Reto4" target="_blank" rel="noopener" style="display:block;color:#38bdf8;text-decoration:none;margin-bottom:4px;">Documentación y presentación →</a>
@@ -218,7 +219,30 @@
     <div class="visual-box"><img src="assets/slides/topologia-multiregion.png" alt="Topología Multi-Región" onclick="zoom(this)" /><div class="caption">Respaldo multi-región (Colombia primaria; Ecuador y Perú como réplicas activas)</div></div>
   </section>
 
-  <!-- SLIDE 5: PRUEBA EN VIVO EXP-1 -->
+  <!-- SLIDE 5: QUE SON LOS EXPERIMENTOS -->
+  <section class="slide">
+    <h1>Cómo probamos la arquitectura: prototipo y experimentos</h1>
+    <p class="subtitle">En vez de quedarnos en diagramas, montamos un prototipo de 12 contenedores en Docker y comparamos nuestra propuesta contra una línea base sin las tácticas</p>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">Montaje</div><div class="val blue">12 contenedores</div><div class="sub">Go, Redpanda (fsync real), HAProxy y PostgreSQL 16 en un solo compose</div></div>
+      <div class="kpi"><div class="label">Ejecuciones</div><div class="val green">75 corridas</div><div class="sub">Mínimo 5 repeticiones por escenario, limpiando todo antes de cada corrida</div></div>
+      <div class="kpi"><div class="label">Verificación</div><div class="val amber">Cruce directo</div><div class="sub">Cruzamos lo que envió cada camión contra lo que quedó guardado en la BD</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Experimento</th><th>ASR</th><th>Qué probamos</th><th>Contra qué lo comparamos (línea base)</th></tr></thead>
+      <tbody>
+        <tr><td><b>EXP-1</b></td><td>DIS-1</td><td>Matar de golpe (SIGKILL) un receptor, un despachador o un broker en plena ráfaga de pánicos a 5.000/s</td><td>Una sola réplica, acuse inmediato al camión y auto-commit</td></tr>
+        <tr><td><b>EXP-1b</b></td><td>DIS-1</td><td>Perder la máquina por completo con su disco (el servidor caído no se vuelve a levantar)</td><td>Sin réplicas: al morir el nodo, sus datos desaparecen con él</td></tr>
+        <tr><td><b>EXP-1c</b></td><td>DIS-1</td><td>Ajustar la sesión del grupo de consumo de 6 s a 2 s (latido 0,5 s) para bajar la latencia bajo falla</td><td>La misma arquitectura con la sesión original de 6 s (4,73 s)</td></tr>
+        <tr><td><b>EXP-2</b></td><td>LAT-1</td><td>Pico de 5.000 señales/s por 5 min (con 2 % de señales atrasadas) midiendo tiempo hasta guardar</td><td>Una sola cola de telemetría para todos los camiones</td></tr>
+        <tr><td><b>EXP-3</b></td><td>LAT-2 / ESC-1</td><td>El mismo pico de 5.000/s midiendo detección de anomalías (2 ms/señal), orden y vaciado de cola</td><td>Una sola cola y un solo worker procesando todo</td></tr>
+        <tr><td><b>EXP-4</b></td><td>ESC-2</td><td>Verificar que el hash de camionId envíe siempre cada camión a la misma cola y reparta parejo (±10 %)</td><td>Conteo real por partición en las 24 colas (desviación ~3 %)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:#94a3b8;margin-top:8px;">Las tablas de PostgreSQL se crearon sin índices ni restricciones de unicidad a propósito, para poder contar duplicados reales y no ocultar pérdidas.</p>
+  </section>
+
+  <!-- SLIDE 6: PRUEBA EN VIVO EXP-1 -->
   <section class="slide">
     <h1>Qué pasa si cae un servidor en plena ráfaga (EXP-1, 1b y 1c)</h1>
     <p class="subtitle">Prueba aquí qué ocurre al matar un nodo de golpe (SIGKILL) con nuestra arquitectura frente a la línea base</p>
@@ -329,7 +353,7 @@
 
   <div class="footer-nav">
     <button class="btn-step" onclick="step(-1)">← Anterior</button>
-    <span id="page-indicator" style="color:#94a3b8;font-size:13px;align-self:center;">1 / 9</span>
+    <span id="page-indicator" style="color:#94a3b8;font-size:13px;align-self:center;">1 / 10</span>
     <button class="btn-step" onclick="step(1)">Siguiente →</button>
   </div>
 </main>
@@ -347,9 +371,9 @@
     btns.forEach((b, i) => b.classList.toggle('active', i === cur));
     document.getElementById('page-indicator').textContent = `${cur + 1} / ${slides.length}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (cur === 5) animateExp1Bars();
-    if (cur === 6) startBacklogAnim();
-    if (cur === 7) renderPartitions();
+    if (cur === 6) animateExp1Bars();
+    if (cur === 7) startBacklogAnim();
+    if (cur === 8) renderPartitions();
   }
   function step(d) { go(cur + d); }
   document.addEventListener('keydown', e => {
@@ -405,7 +429,7 @@
   }
 
   setInterval(() => {
-    if (cur !== 5) return;
+    if (cur !== 6) return;
     cSent++;
     const route = (chaosMode === 'tactica' && nodeDead) ? 1 : (chaosMode === 'tactica' ? (cSent % 2) : 0);
     packets.push({ x: 145, y: 110, route, lost: (chaosMode === 'base' && nodeDead) });
@@ -413,7 +437,7 @@
   }, 360);
 
   function drawChaos() {
-    if (cur === 5) {
+    if (cur === 6) {
       cCtx.clearRect(0, 0, 900, 220);
       const box = (x, y, w, h, title, sub, stroke, fill) => {
         cCtx.fillStyle = fill; cCtx.strokeStyle = stroke; cCtx.lineWidth = 2;
