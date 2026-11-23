@@ -51,3 +51,10 @@ En este repositorio reunimos la propuesta de arquitectura para la plataforma de 
 5. **Cierre:** [Bitácora de hallazgos](05-Aprendizajes/Bitacora-de-Hallazgos.md) · [Limitaciones y siguiente paso](05-Aprendizajes/Limitaciones-y-Proximos-Pasos.md)
 
 **Otros archivos:** [Guión de presentación](00-Inicio/Mapa-de-Navegacion.md) · [Glosario](00-Inicio/Glosario-y-Tacticas.md) · [Resumen en una página](LogiSur-Andina-Propuesta-Arquitectura.md) · [Informe HTML](evidencia/informe-experimental.html) · [docker-compose.yml](evidencia/docker-compose.yml)
+
+---
+
+## Equipo y cliente
+
+- **Equipo:** Juan Camilo Caicedo España · Karol García Bohórquez · Felipe Rueda · David Fernando Guarnizo
+- **Cliente:** Javier Rodríguez
