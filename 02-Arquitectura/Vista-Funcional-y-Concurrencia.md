@@ -25,7 +25,7 @@ Separamos físicamente el **carril de pánicos** (prioridad absoluta y replicaci
 
 ## 1. Vista Funcional (Ruta Crítica)
 
-![Vista Funcional LogiSur Andina](../assets/slides/vista-funcional.png)
+![Vista Funcional LogiSur Andina](../assets/slides/vista-funcional.jpeg)
 
 ---
 
